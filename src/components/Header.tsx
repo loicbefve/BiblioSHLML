@@ -4,6 +4,7 @@ import NavBar from './NavBar'
 const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  background-color: #343a40;
 `
 
 const Header = () => {

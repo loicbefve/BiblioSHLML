@@ -9,6 +9,7 @@ import {
 import Home from './pages/Home'
 import Error from './pages/Error'
 import Layout from './components/Layout'
+import './styles/main.css'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
