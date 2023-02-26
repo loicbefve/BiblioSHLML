@@ -1,26 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Header from './components/Header'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from 'react-router-dom'
 import Home from './pages/Home'
-import Footer from './components/Footer'
 import Error from './pages/Error'
+import Layout from './components/Layout'
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '*',
-    element: <Error />,
-  },
-])
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<Layout />} errorElement={<Error />}>
+      <Route index element={<Home />} />
+    </Route>
+  )
+)
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Header />
     <RouterProvider router={router} />
-    <Footer />
   </React.StrictMode>
 )

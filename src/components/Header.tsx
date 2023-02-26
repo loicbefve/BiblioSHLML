@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import NavBar from './NavBar'
 
 const HeaderContainer = styled.div`
   display: flex;
@@ -9,7 +10,7 @@ const Header = () => {
   return (
     <HeaderContainer>
       <div>Fond Bibliographique</div>
-      <div>Nav</div>
+      <NavBar />
       <div>RightLink</div>
     </HeaderContainer>
   )
