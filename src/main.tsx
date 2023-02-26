@@ -4,11 +4,16 @@ import Header from './components/Header'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Home from './pages/Home'
 import Footer from './components/Footer'
+import Error from './pages/Error'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />,
+  },
+  {
+    path: '*',
+    element: <Error />,
   },
 ])
 
