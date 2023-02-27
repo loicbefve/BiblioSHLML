@@ -24,11 +24,17 @@ const LayoutWrapper = styled.div`
   }
 `
 
+const Main = styled.div`
+  flex-grow: 1;
+`
+
 const Layout = () => {
   return (
     <LayoutWrapper>
       <Header />
-      <Outlet />
+      <Main>
+        <Outlet />
+      </Main>
       <Footer />
     </LayoutWrapper>
   )
