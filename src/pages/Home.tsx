@@ -1,25 +1,25 @@
-import styled from 'styled-components'
-import shlml_logo from '../assets/shlml_logo.jpg'
-import { Col, Container, Row } from 'react-bootstrap'
+import styled from 'styled-components';
+import { Col, Container, Row } from 'react-bootstrap';
+import shlml_logo from '../assets/shlml_logo.jpg';
 
 const HomeContainer = styled(Container)`
   display: flex;
-`
+`;
 
 const StyledImg = styled.img`
   width: 100%;
-`
+`;
 
 const TextCol = styled(Col)`
   padding: 30px;
   font-size: 120%;
-`
+`;
 
 const ImgCol = styled(Col)`
   display: flex;
   align-items: center;
-`
-const Home = () => {
+`;
+function Home() {
   return (
     <HomeContainer as={Container}>
       <Row>
@@ -39,36 +39,38 @@ const Home = () => {
           <ul>
             <li>Les imprimés, plus de 17 000 ouvrages.</li>
             <li>
-              Les factums, plus de 1 000 documents. Il n'est pas facile de
+              Les factums, plus de 1 000 documents. Il n&apos;est pas facile de
               trouver un document, sans comprendre le contenu, aussi en
               demandant une recherche sans critère, vous pouvez faire défiler
               les titres des divers mémoires.
             </li>
             <li>
               Fonds documentaires, plus de 1 400 ouvrages, ce sont surtout des
-              ouvrages de cours du XIXème siècle. Le défilement s'obtient par la
-              recherche sans critère.
+              ouvrages de cours du XIXème siècle. Le défilement s&apos;obtient
+              par la recherche sans critère.
             </li>
             <li>
               Le fonds johannique, plus de 3 200 ouvrages, la Société a
-              bénéficié d'unimportant legs de livres sur Jeanne d'Arc.
+              bénéficié d&apos;un important legs de livres sur Jeanne
+              d&apos;Arc.
             </li>
             <li>
-              Manuscrits, plus de 400, certains sont des originaux, d'autres des
-              copies. Attention, une partie de ce fonds est déposé aux archives
-              départementales et n'est pas consultable au Musée Lorrain. Le
-              défilement s'obtient par la recherche sans critère.
+              Manuscrits, plus de 400, certains sont des originaux,
+              d&apos;autres des copies. Attention, une partie de ce fonds est
+              déposé aux archives départementales et n&apos;est pas consultable
+              au Musée Lorrain. Le défilement s&apos;obtient par la recherche
+              sans critère.
             </li>
             <li>
-              Index du Pays Lorrain, cette rubrique reprend la table d'index de
-              1904 à 2004 réalisée par Pierre Simonin. Ce qui permet une
-              recherche textuelle dans les rubriques.
+              Index du Pays Lorrain, cette rubrique reprend la table
+              d&apos;index de 1904 à 2004 réalisée par Pierre Simonin. Ce qui
+              permet une recherche textuelle dans les rubriques.
             </li>
           </ul>
         </TextCol>
       </Row>
     </HomeContainer>
-  )
+  );
 }
 
-export default Home
+export default Home;

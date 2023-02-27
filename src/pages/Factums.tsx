@@ -1,5 +1,5 @@
-const Factums = () => {
-  return <div>This is the Factums.tsx component</div>
+function Factums() {
+  return <div>This is the Factums.tsx component</div>;
 }
 
-export default Factums
+export default Factums;

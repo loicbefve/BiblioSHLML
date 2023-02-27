@@ -1,11 +1,11 @@
-import { InputGroup, Form, Button } from 'react-bootstrap'
-import styled from 'styled-components'
+import { InputGroup, Form, Button } from 'react-bootstrap';
+import styled from 'styled-components';
 
 const SearchBarWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 10px;
-`
+`;
 
 const StyledInputGroup = styled(InputGroup)`
   margin-left: 5px;
@@ -14,9 +14,9 @@ const StyledInputGroup = styled(InputGroup)`
   min-width: 300px;
   flex: 1;
   overflow: hidden;
-`
+`;
 
-const SearchBar = () => {
+function SearchBar() {
   return (
     <SearchBarWrapper>
       <StyledInputGroup>
@@ -41,7 +41,7 @@ const SearchBar = () => {
         />
       </StyledInputGroup>
     </SearchBarWrapper>
-  )
+  );
 }
 
-export default SearchBar
+export default SearchBar;

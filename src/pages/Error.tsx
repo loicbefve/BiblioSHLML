@@ -1,5 +1,5 @@
-const Error = () => {
-  return <div>This is the 404 page</div>
+function Error() {
+  return <div>This is the 404 page</div>;
 }
 
-export default Error
+export default Error;

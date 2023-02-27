@@ -1,7 +1,7 @@
-import Header from './Header'
-import { Outlet } from 'react-router-dom'
-import Footer from './Footer'
-import styled from 'styled-components'
+import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
+import Header from './Header';
+import Footer from './Footer';
 
 const LayoutWrapper = styled.div`
   display: flex;
@@ -22,13 +22,13 @@ const LayoutWrapper = styled.div`
   @media (min-width: 992px) {
     font-size: 18px;
   }
-`
+`;
 
 const Main = styled.div`
   flex-grow: 1;
-`
+`;
 
-const Layout = () => {
+function Layout() {
   return (
     <LayoutWrapper>
       <Header />
@@ -37,7 +37,7 @@ const Layout = () => {
       </Main>
       <Footer />
     </LayoutWrapper>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

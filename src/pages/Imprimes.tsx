@@ -1,6 +1,6 @@
-import SearchBar from '../components/SearchBar'
+import SearchBar from '../components/SearchBar';
 
-const Imprimes = () => {
+function Imprimes() {
   return (
     <div>
       <h3 style={{ textAlign: 'center', marginTop: '10px' }}>
@@ -10,7 +10,7 @@ const Imprimes = () => {
       <SearchBar />
       Visualizer
     </div>
-  )
+  );
 }
 
-export default Imprimes
+export default Imprimes;
