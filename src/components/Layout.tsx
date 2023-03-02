@@ -26,6 +26,7 @@ const LayoutWrapper = styled.div`
 
 const Main = styled.div`
   flex-grow: 1;
+  padding: 0 100px;
 `;
 
 function Layout() {

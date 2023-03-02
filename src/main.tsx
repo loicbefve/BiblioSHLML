@@ -18,12 +18,18 @@ import Manuscrits from './pages/Manuscrits';
 import IndexPaysLorrain from './pages/IndexPaysLorrain';
 import Contact from './pages/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ResultsDisplay from './components/ResultsDisplay';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<Home />} />
-      <Route path="/imprimes" element={<Imprimes />} />
+      <Route path="/imprimes" element={<Imprimes />}>
+        <Route
+          path="img/:imgId/metadata/:metadataId"
+          element={<ResultsDisplay />}
+        />
+      </Route>
       <Route path="/factums" element={<Factums />} />
       <Route path="/fonds_johannique" element={<FondJohannique />} />
       <Route path="/fonds_documentaire" element={<FondDocumentaire />} />
