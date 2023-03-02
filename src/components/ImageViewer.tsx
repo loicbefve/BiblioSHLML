@@ -11,6 +11,7 @@ const ImageViewerWrapper = styled.div`
 const ResultImg = styled.img`
   padding: 20px;
   border: solid 1px pink;
+  height: 600px;
 `;
 
 interface IProps {

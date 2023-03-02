@@ -8,7 +8,7 @@ import {
 } from 'react-router-dom';
 import Home from './pages/Home';
 import Error from './pages/Error';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import './styles/main.css';
 import Imprimes from './pages/Imprimes';
 import Factums from './pages/Factums';
