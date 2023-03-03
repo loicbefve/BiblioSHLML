@@ -12,6 +12,8 @@ build:
   stage: build
   script:
     - yarn install
+    - yarn run tsc && vite build
+
   # artifacts:
   #   paths:
   #     - build/
