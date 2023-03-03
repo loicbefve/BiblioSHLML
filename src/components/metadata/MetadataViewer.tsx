@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Dispatch, SetStateAction } from 'react';
 import ResultNavigation from '../ResultNavigation';
 import MetadataItem from './MetadataItem';
 
@@ -16,15 +17,20 @@ const MetadatasWrapper = styled.div`
 `;
 
 interface IProps {
-  metadataPageIndex: number;
-  metadatas: Record<string, string>;
+  metadatas: [string, string][];
+  resultPageIndex: number;
+  setResultPageIndex: Dispatch<SetStateAction<number>>;
 }
-function MetadataViewer({ metadataPageIndex, metadatas }: IProps) {
+function MetadataViewer({
+  metadatas,
+  resultPageIndex,
+  setResultPageIndex,
+}: IProps) {
   return (
     <MetadataViewerWrapper>
-      <ResultNavigation resultType="Fiche" resultIndex={metadataPageIndex} />
+      <ResultNavigation resultType="Fiche" resultIndex={resultPageIndex} />
       <MetadatasWrapper>
-        {Object.entries(metadatas).map(([key, value]) => (
+        {metadatas.map(([key, value]) => (
           <MetadataItem
             key={`${key}-${value}`}
             metadataName={key}
