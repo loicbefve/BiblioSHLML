@@ -1,12 +1,20 @@
-image: node:16.13.2-alpine
-
 stages:
+  - test
   - build
+  - deploy
 
-# cache:
-#   key: ${CI_COMMIT_SHA}
-#   paths:
-#     - node_modules/
+# variables:
+#   SERVER_USER: "username"
+#   SERVER_IP: "123.45.67.89"
+#   SERVER_PATH: "/path/to/remote/directory"
+
+test:
+  stage: test
+  script:
+    # Run ESLint
+    - yarn run lint
+
+
 
 build:
   stage: build
@@ -15,6 +23,10 @@ build:
     - yarn run tsc 
     - yarn run vite build
 
-  # artifacts:
-  #   paths:
-  #     - build/
+
+
+deploy:
+  stage: deploy
+  script:
+    # Deploy to remote server
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown=$NGINX_GROUP:$NGINX_GROUP $CI_PROJECT_DIR/dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
