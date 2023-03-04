@@ -35,4 +35,8 @@ deploy:
   stage: deploy
   script:
     # Deploy to remote server
-    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no -i $HOME/$IDENTITY_FILEPATH" --chmod=744 --chown=$NGINX_GROUP:$NGINX_GROUP $CI_PROJECT_DIR/dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+    - echo "$NGINX_GROUP"
+    - echo "$CI_PROJECT_DIR"
+    - echo "$SERVER_USER"
+    - echo "$SERVER_PATH"
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown=$NGINX_GROUP:$NGINX_GROUP $CI_PROJECT_DIR/dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
