@@ -1,14 +1,14 @@
 stages:
+  - install
   - test
   - build
   - deploy
 
-# variables:
-#   SERVER_USER: "username"
-#   SERVER_IP: "123.45.67.89"
-#   SERVER_PATH: "/path/to/remote/directory"
-before_script:
-  - yarn install
+install:
+  stage: install
+  script:
+    # Run ESLint
+    - yarn install
 
 test:
   stage: test
@@ -30,4 +30,4 @@ deploy:
   stage: deploy
   script:
     # Deploy to remote server
-    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown=$NGINX_GROUP:$NGINX_GROUP $CI_PROJECT_DIR/dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no -i $IDENTITY_FILEPATH" --chmod=744 --chown=$NGINX_GROUP:$NGINX_GROUP $CI_PROJECT_DIR/dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
