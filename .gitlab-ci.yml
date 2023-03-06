@@ -4,17 +4,17 @@ stages:
   - build
   - deploy
 
+cache:
+  key:
+    files:
+    - yarn.lock
+  paths:
+  - node_modules/
+
 install:
   stage: install
-  cache:
-    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
-    paths:
-    - node_modules/
   script:
     - yarn install --frozen-lockfile
-  only:
-    changes:
-      - yarn.lock
 
 
 
