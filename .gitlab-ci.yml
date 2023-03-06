@@ -5,15 +5,18 @@ stages:
   - deploy
 
 cache:
+  key:
+    files:
+    - yarn.lock
   paths:
-    - node_modules/
-
+  - node_modules/
 
 install:
   stage: install
   script:
-    # Run ESLint
-    - yarn install
+    - yarn install --frozen-lockfile
+
+
 
 test:
   stage: test
