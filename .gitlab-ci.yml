@@ -41,4 +41,4 @@ deploy:
   stage: deploy
   script:
     # Deploy to remote server
-    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown=$NGINX_GROUP:$NGINX_GROUP dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=u=rwX,g=rw,o=r --chown=$NGINX_GROUP:$NGINX_GROUP dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
