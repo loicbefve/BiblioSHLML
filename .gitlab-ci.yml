@@ -33,7 +33,7 @@ build:
     when: on_success
     expire_in: 30 days
     paths:
-      - "/dist"
+      - dist/
 
 
 
@@ -41,4 +41,4 @@ deploy:
   stage: deploy
   script:
     # Deploy to remote server
-    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown="$NGINX_GROUP":"$NGINX_GROUP" "/dist" $SERVER_USER@$SERVER_IP:$SERVER_PATH
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown="$NGINX_GROUP":"$NGINX_GROUP" dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
