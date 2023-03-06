@@ -38,14 +38,16 @@ interface ImprimeResearchResult {
 }
 
 type IRouteParams = {
-  imgId: string;
-  metadataId: string;
+  ficheId: string;
+  imageId: string;
 };
 
 /* COMPONENT */
 function Imprimes() {
   /* PARAMS */
-  const { imgId, metadataId } = useParams<IRouteParams>();
+  const { ficheId, imageId } = useParams<IRouteParams>();
+  const ficheIdInt = ficheId ? parseInt(ficheId, 10) : 0;
+  const imageIdInt = imageId ? parseInt(imageId, 10) : 0;
 
   /* STATES */
   const [title, setTitle] = useState('');
@@ -54,32 +56,20 @@ function Imprimes() {
   const [researchResults, setResearchResults] = useState(
     [] as ImprimeResearchResult[]
   );
-  const [imagePageIndex, setImagePageIndex] = useState(1);
-  const [resultPageIndex, setResultPageIndex] = useState(1);
 
   /* EFFECTS */
-
-  // Effect to bind the route param to the associated state
-  useEffect(() => {
-    setImagePageIndex(imgId ? parseInt(imgId, 10) : 1);
-  }, [imgId]);
-
-  // Effect to bind the route param to the associated state
-  useEffect(() => {
-    setResultPageIndex(metadataId ? parseInt(metadataId, 10) : 1);
-  }, [metadataId]);
-
   // Effect to collect datas
   useEffect(() => {
     setResearchResults(mockImprimes.data);
   }, []);
 
+  /* CONSTS */
+  const numberOfResults = researchResults.length;
   const currentResult =
-    researchResults.length !== 0
-      ? researchResults[resultPageIndex - 1]
+    numberOfResults > 0 && numberOfResults > ficheIdInt - 1
+      ? researchResults[ficheIdInt - 1]
       : { urls: [] };
   const { urls, ...datas } = currentResult;
-  const currentImage = urls[imagePageIndex - 1];
 
   /* TSX */
   return (
@@ -88,18 +78,15 @@ function Imprimes() {
       <hr />
       <SearchBar />
       <ResultDisplayContainer>
-        imagePageIndex : {imagePageIndex}
-        resultPageIndex: {resultPageIndex}
-        <Link
-          to={`/imprimes/img/${imagePageIndex + 1}/metadata/${resultPageIndex}`}
-        >
-          Test
-        </Link>
-        <ImageViewer imageIndex={imagePageIndex} />
+        <ImageViewer
+          images={urls}
+          currentImageId={imageIdInt}
+          currentFicheId={ficheIdInt}
+        />
         <MetadataViewer
-          metadatas={Object.entries(datas)}
-          resultPageIndex={resultPageIndex}
-          setResultPageIndex={setResultPageIndex}
+          results={Object.entries(datas)}
+          currentImageId={imageIdInt}
+          currentFicheId={ficheIdInt}
         />
       </ResultDisplayContainer>
     </>
