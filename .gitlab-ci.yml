@@ -1,19 +1,44 @@
-image: node:16.13.2-alpine
-
 stages:
+  - install
+  - test
   - build
+  - deploy
 
-# cache:
-#   key: ${CI_COMMIT_SHA}
-#   paths:
-#     - node_modules/
+cache:
+  paths:
+    - node_modules/
+
+
+install:
+  stage: install
+  script:
+    # Run ESLint
+    - yarn install
+
+test:
+  stage: test
+  script:
+    # Run ESLint
+    - yarn run lint
+
+
 
 build:
   stage: build
   script:
-    - yarn install
-    - yarn run "tsc && vite build"
+    - yarn run tsc 
+    - yarn run vite build
+  artifacts:
+    untracked: false
+    when: on_success
+    expire_in: 30 days
+    paths:
+      - dist/
 
-  # artifacts:
-  #   paths:
-  #     - build/
+
+
+deploy:
+  stage: deploy
+  script:
+    # Deploy to remote server
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown="$NGINX_GROUP":"$NGINX_GROUP" dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
