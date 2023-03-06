@@ -28,6 +28,12 @@ build:
   script:
     - yarn run tsc 
     - yarn run vite build
+  artifacts:
+    untracked: false
+    when: on_success
+    expire_in: 30 days
+    paths:
+      - "/dist"
 
 
 
@@ -35,8 +41,4 @@ deploy:
   stage: deploy
   script:
     # Deploy to remote server
-    - echo "$NGINX_GROUP"
-    - echo "$CI_PROJECT_DIR"
-    - echo "$SERVER_USER"
-    - echo "$SERVER_PATH"
-    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown="$NGINX_GROUP":"$NGINX_GROUP" "$CI_PROJECT_DIR"/dist/ $SERVER_USER@$SERVER_IP:$SERVER_PATH
+    - rsync -r --delete-after --quiet -e "ssh -o StrictHostKeyChecking=no" --chmod=744 --chown="$NGINX_GROUP":"$NGINX_GROUP" "/dist" $SERVER_USER@$SERVER_IP:$SERVER_PATH
