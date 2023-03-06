@@ -4,16 +4,19 @@ stages:
   - build
   - deploy
 
-cache:
-  paths:
-    - node_modules/
-
-
 install:
   stage: install
+  cache:
+    key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+    paths:
+    - node_modules/
   script:
-    # Run ESLint
-    - yarn install
+    - yarn install --frozen-lockfile
+  only:
+    changes:
+      - yarn.lock
+
+
 
 test:
   stage: test
