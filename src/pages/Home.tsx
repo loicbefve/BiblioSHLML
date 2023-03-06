@@ -27,7 +27,6 @@ function Home() {
           <StyledImg src={shlml_logo} alt="Le logo de la SHLM" />
         </ImgCol>
         <TextCol md={6}>
-          <h1>This is a test to see if my pipeline is WORKING</h1>
           <p>
             Notre Société possède un important fonds documentaire centré bien
             évidemment sur la Lorraine.
