@@ -26,7 +26,6 @@ function Home() {
         <ImgCol md={6}>
           <StyledImg src={shlml_logo} alt="Le logo de la SHLM" />
         </ImgCol>
-        <h1>Test de mise en prod</h1>
         <TextCol md={6}>
           <p>
             Notre Société possède un important fonds documentaire centré bien

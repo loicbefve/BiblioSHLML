@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { ElementType } from 'react';
 import logo_shlml from '../assets/shlml_logo.jpg';
 
 const ImageViewerWrapper = styled.div`
