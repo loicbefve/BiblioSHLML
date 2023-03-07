@@ -6,7 +6,6 @@ import MetadataItem from './MetadataItem';
 const MetadataViewerWrapper = styled.div`
   flex: 1;
   text-align: center;
-  border: solid 1px green;
 `;
 
 const MetadatasWrapper = styled.div`
@@ -16,9 +15,7 @@ const MetadatasWrapper = styled.div`
   padding: 20px;
 `;
 
-const NavigationWrapper = styled.div`
-  border: solid 1px violet;
-`;
+const NavigationWrapper = styled.div``;
 
 interface IProps {
   results: [string, string][];

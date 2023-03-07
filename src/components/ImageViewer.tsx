@@ -5,19 +5,15 @@ import logo_shlml from '../assets/shlml_logo.jpg';
 
 const ImageViewerWrapper = styled.div`
   flex: 1;
-  border: solid 1px red;
   text-align: center;
 `;
 
 const ResultImg = styled.img`
   padding: 20px;
-  border: solid 1px pink;
   height: 600px;
 `;
 
-const ResultNavigationWrapper = styled.div`
-  border: solid 1px violet;
-`;
+const ResultNavigationWrapper = styled.div``;
 
 interface IProps {
   images: string[];

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const MetadataWrapper = styled.div`
-  border: solid 1px silver;
   padding: 0 10px;
 `;
 
