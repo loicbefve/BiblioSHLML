@@ -1,7 +1,6 @@
 import styled from 'styled-components';
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
+import { useState } from 'react';
+import { useLoaderData, useParams, useNavigation } from 'react-router-dom';
 import SearchBar from '../components/SearchBar';
 import { mockImprimes } from '../utils/MockData';
 import ImageViewer from '../components/ImageViewer';
@@ -42,34 +41,48 @@ type IRouteParams = {
   imageId: string;
 };
 
+type LoaderProps = {
+  request: Request;
+};
+
+/* FUNCTIONS */
+
+function simulateAsyncRequest(): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve('Response from server');
+    }, 2000);
+  });
+}
+
+export async function imprimeLoader({ request }: LoaderProps) {
+  const url = new URL(request.url);
+  const title = url.searchParams.get('title');
+  const writer = url.searchParams.get('writer');
+  const keywords = url.searchParams.get('keywords');
+  simulateAsyncRequest();
+  const researchResult = title ? mockImprimes.data : { data: [] };
+  return researchResult;
+}
+
 /* COMPONENT */
 function Imprimes() {
   /* PARAMS */
   const { ficheId, imageId } = useParams<IRouteParams>();
-  const ficheIdInt = ficheId ? parseInt(ficheId, 10) : 0;
-  const imageIdInt = imageId ? parseInt(imageId, 10) : 0;
+  // const ficheIdInt = ficheId ? parseInt(ficheId, 10) : 1;
+  // const imageIdInt = imageId ? parseInt(imageId, 10) : 1;
 
   /* STATES */
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
-  const [keyword, setKeyword] = useState('');
-  const [researchResults, setResearchResults] = useState(
-    [] as ImprimeResearchResult[]
-  );
-
-  /* EFFECTS */
-  // Effect to collect datas
-  useEffect(() => {
-    setResearchResults(mockImprimes.data);
-  }, []);
+  // const [title, setTitle] = useState('');
+  // const [author, setAuthor] = useState('');
+  // const [keyword, setKeyword] = useState('');
+  //
+  // /* HOOKS */
+  // const navigation = useNavigation();
+  const researchResults = useLoaderData();
 
   /* CONSTS */
-  const numberOfResults = researchResults.length;
-  const currentResult =
-    numberOfResults > 0 && numberOfResults > ficheIdInt - 1
-      ? researchResults[ficheIdInt - 1]
-      : { urls: [] };
-  const { urls, ...datas } = currentResult;
+  console.log(researchResults);
 
   /* TSX */
   return (
@@ -78,16 +91,16 @@ function Imprimes() {
       <hr />
       <SearchBar />
       <ResultDisplayContainer>
-        <ImageViewer
-          images={urls}
-          currentImageId={imageIdInt}
-          currentFicheId={ficheIdInt}
-        />
-        <MetadataViewer
-          results={Object.entries(datas)}
-          currentImageId={imageIdInt}
-          currentFicheId={ficheIdInt}
-        />
+        {/* <ImageViewer */}
+        {/*  images={urls} */}
+        {/*  currentImageId={imageIdInt} */}
+        {/*  currentFicheId={ficheIdInt} */}
+        {/* /> */}
+        {/* <MetadataViewer */}
+        {/*  results={Object.entries(datas)} */}
+        {/*  currentImageId={imageIdInt} */}
+        {/*  currentFicheId={ficheIdInt} */}
+        {/* /> */}
       </ResultDisplayContainer>
     </>
   );
