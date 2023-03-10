@@ -10,7 +10,6 @@ import Home from './pages/Home';
 import Error from './pages/Error';
 import Layout from './components/layout/Layout';
 import './styles/main.css';
-import Imprimes, { imprimeLoader } from './pages/Imprimes';
 import Factums from './pages/Factums';
 import FondJohannique from './pages/FondJohannique';
 import FondDocumentaire from './pages/FondDocumentaire';
@@ -18,14 +17,13 @@ import Manuscrits from './pages/Manuscrits';
 import IndexPaysLorrain from './pages/IndexPaysLorrain';
 import Contact from './pages/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Imprimes from './pages/Imprimes';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<Home />} />
-      <Route path="imprimes" loader={imprimeLoader} element={<Imprimes />}>
-        {/* <Route path="fiche/:ficheId/image/:imageId" element={<Imprimes />} /> */}
-      </Route>
+      <Route path="imprimes" element={<Imprimes />} />
       <Route path="/factums" element={<Factums />} />
       <Route path="/fonds_johannique" element={<FondJohannique />} />
       <Route path="/fonds_documentaire" element={<FondDocumentaire />} />

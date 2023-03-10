@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { Dispatch, SetStateAction } from 'react';
 import MetadataItem from './MetadataItem';
+import { ImprimeResearchResult } from '../../utils/Types';
 
 const MetadataViewerWrapper = styled.div`
   flex: 1;
@@ -18,41 +20,54 @@ const MetadatasWrapper = styled.div`
 const NavigationWrapper = styled.div``;
 
 interface IProps {
-  results: [string, string][];
-  currentFicheId: number;
-  currentImageId: number;
+  results: ImprimeResearchResult[];
+  currentDataIndex: number;
+  setCurrentDataIndex: Dispatch<SetStateAction<number>>;
 }
-function MetadataViewer({ results, currentFicheId, currentImageId }: IProps) {
+function MetadataViewer({
+  results,
+  currentDataIndex,
+  setCurrentDataIndex,
+}: IProps) {
   const numberOfResults = results.length;
+  const currentResult = results[currentDataIndex];
+  const metadatas = Object.entries(currentResult.metadatas);
+
+  const handlePreviousClick = () => {
+    setCurrentDataIndex(currentDataIndex - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentDataIndex(currentDataIndex + 1);
+  };
+
   return (
     <MetadataViewerWrapper>
       <NavigationWrapper>
         <ButtonGroup role="group" aria-label="Image navigation">
           <Button
-            as={Link as any}
-            to={`fiche/${currentFicheId - 1}/image/${currentImageId}`}
             variant="secondary"
-            disabled={currentFicheId <= 1}
-            active={currentFicheId > 1}
+            disabled={currentDataIndex <= 0}
+            active={currentDataIndex > 0}
+            onClick={handlePreviousClick}
           >
             Image précédente
           </Button>
           <Button
-            as={Link as any}
-            to={`fiche/${currentFicheId + 1}/image/${currentImageId}`}
             variant="secondary"
-            disabled={currentFicheId >= numberOfResults}
-            active={currentFicheId < numberOfResults}
+            disabled={currentDataIndex + 1 >= numberOfResults}
+            active={currentDataIndex + 1 < numberOfResults}
+            onClick={handleNextClick}
           >
             Image suivante{' '}
           </Button>
           <InputGroup.Text id="title-text">
-            Resultat {currentFicheId} de {numberOfResults}
+            Resultat {currentDataIndex + 1} de {numberOfResults}
           </InputGroup.Text>
         </ButtonGroup>
       </NavigationWrapper>
       <MetadatasWrapper>
-        {results.map(([key, value]) => (
+        {metadatas.map(([key, value]) => (
           <MetadataItem
             key={`${key}-${value}`}
             metadataName={key}

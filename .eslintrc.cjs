@@ -26,6 +26,8 @@ module.exports = {
         "prettier",
     ],
     "rules": {
-        "react/react-in-jsx-scope":0
+        "react/react-in-jsx-scope":0,
+        "react/require-default-props":0,
+        "react-hooks/exhaustive-deps":1
     }
 }

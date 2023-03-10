@@ -1,6 +1,6 @@
 import { InputGroup, Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Form as RouterForm } from 'react-router-dom';
+import { Form as RouterForm, Link, useSearchParams } from 'react-router-dom';
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -26,7 +26,11 @@ const IntroductionText = styled.p`
   padding: 10px;
 `;
 
-function SearchBar() {
+interface IProps {
+  onSearch: () => void;
+}
+
+function SearchBar({ onSearch }: IProps) {
   return (
     <SearchBarWrapper>
       <IntroductionText>
@@ -42,16 +46,20 @@ function SearchBar() {
             aria-label="title-input"
             type="Search"
             name="title"
+            // value={title || ''}
+            // onChange={(e) => setSearchParams({ title: e.target.value })}
           />
         </StyledInputGroup>
         <StyledInputGroup>
-          <InputGroup.Text id="writer-text">Auteur</InputGroup.Text>
+          <InputGroup.Text id="author-text">Auteur</InputGroup.Text>
           <Form.Control
-            id="writer-input"
-            aria-describedby="writer-input"
-            aria-label="writer-input"
+            id="author-input"
+            aria-describedby="author-input"
+            aria-label="author-input"
             type="Search"
-            name="writer"
+            name="author"
+            // value={author || ''}
+            // onChange={(e) => setSearchParams({ author: e.target.value })}
           />
         </StyledInputGroup>
         <StyledInputGroup>
@@ -62,16 +70,18 @@ function SearchBar() {
             aria-label="keywords-input"
             type="Search"
             name="keywords"
+            // value={keywords || ''}
+            // onChange={(e) => setSearchParams({ keywords: e.target.value })}
           />
         </StyledInputGroup>
         <StyledInputGroup>
-          <Button variant="secondary" type="submit">
+          <Button variant="secondary" type="submit" onClick={onSearch}>
             Rechercher dans
           </Button>
           <Form.Control
             disabled
             id="basic-url"
-            aria-describedby="writer-text"
+            aria-describedby="number_of_fiches"
             placeholder="xxxxxx fiches au jj/mm/aaaa"
           />
         </StyledInputGroup>

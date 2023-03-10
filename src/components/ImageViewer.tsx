@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
+import { Dispatch, SetStateAction } from 'react';
 import logo_shlml from '../assets/shlml_logo.jpg';
 
 const ImageViewerWrapper = styled.div`
@@ -17,36 +18,48 @@ const ResultNavigationWrapper = styled.div``;
 
 interface IProps {
   images: string[];
-  currentImageId: number;
-  currentFicheId: number;
+  currentImageIndex: number;
+  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
-function ImageViewer({ images, currentImageId, currentFicheId }: IProps) {
-  const numberOfImages = images?.length;
+function ImageViewer({
+  images,
+  currentImageIndex,
+  setCurrentImageIndex,
+}: IProps) {
+  const numberOfImages = images.length;
+
+  const handlePreviousClick = () => {
+    setCurrentImageIndex(currentImageIndex - 1);
+  };
+
+  const handleNextClick = () => {
+    setCurrentImageIndex(currentImageIndex + 1);
+  };
 
   return (
     <ImageViewerWrapper>
       <ResultNavigationWrapper>
         <ButtonGroup role="group" aria-label="Image navigation">
           <Button
-            as={Link as any}
-            to={`fiche/${currentFicheId}/image/${currentImageId - 1}`}
+            type="button"
             variant="secondary"
-            disabled={currentImageId <= 1}
-            active={currentImageId > 1}
+            disabled={currentImageIndex <= 0}
+            active={currentImageIndex > 0}
+            onClick={handlePreviousClick}
           >
             Image précédente
           </Button>
           <Button
-            as={Link as any}
-            to={`fiche/${currentFicheId}/image/${currentImageId + 1}`}
+            type="button"
             variant="secondary"
-            disabled={currentImageId >= numberOfImages}
-            active={currentImageId < numberOfImages}
+            disabled={currentImageIndex + 1 >= numberOfImages}
+            active={currentImageIndex + 1 < numberOfImages}
+            onClick={handleNextClick}
           >
             Image suivante{' '}
           </Button>
           <InputGroup.Text id="title-text">
-            Resultat {currentImageId} de {numberOfImages}
+            Resultat {currentImageIndex + 1} de {numberOfImages}
           </InputGroup.Text>
         </ButtonGroup>
       </ResultNavigationWrapper>
