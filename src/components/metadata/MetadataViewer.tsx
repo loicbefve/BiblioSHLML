@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { useSearchParams } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import MetadataItem from './MetadataItem';
 import { ImprimeResearchResult } from '../../utils/Types';

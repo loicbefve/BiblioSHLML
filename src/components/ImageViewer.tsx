@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { useSearchParams } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import logo_shlml from '../assets/shlml_logo.jpg';
 

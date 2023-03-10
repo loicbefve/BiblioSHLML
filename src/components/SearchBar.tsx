@@ -1,6 +1,6 @@
 import { InputGroup, Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import { Form as RouterForm, Link, useSearchParams } from 'react-router-dom';
+import { Form as RouterForm } from 'react-router-dom';
 
 const InputsWrapper = styled.div`
   display: flex;

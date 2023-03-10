@@ -17,7 +17,6 @@ function simulateAsyncRequest(): Promise<string> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('Response from server');
-      console.log('loading data');
     }, 300);
   });
 }
@@ -34,10 +33,9 @@ function Imprimes() {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ImprimeResearchResult[]>([]);
   const [appState, setAppState] = useState(AppState.NoData);
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const handleSearch = async () => {
-    console.log('Enter inside handleSearch');
     setAppState(AppState.Loading);
     // TODO : Real backend call
     await simulateAsyncRequest();
@@ -51,7 +49,6 @@ function Imprimes() {
    * contains title, author or keywords parameters.
    */
   useEffect(() => {
-    console.log('Enter inside useEffect');
     const title = searchParams.get('title');
     const author = searchParams.get('author');
     const keywords = searchParams.get('keywords');
