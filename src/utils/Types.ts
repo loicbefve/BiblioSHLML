@@ -14,3 +14,9 @@ export interface ImprimeResearchResult {
   };
   urls: string[];
 }
+
+export enum PageState {
+  NoData = 'nodata',
+  Loading = 'loading',
+  Loaded = 'loaded',
+}
