@@ -4,12 +4,19 @@ import { Dispatch, SetStateAction } from 'react';
 
 const ImageViewerWrapper = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
   text-align: center;
+`;
+
+const ImageContainer = styled.div`
+  flex-grow: 0;
 `;
 
 const ResultImg = styled.img`
   padding: 20px;
-  height: 600px;
+  max-height: 600px;
+  height: 100%;
 `;
 
 const ResultNavigationWrapper = styled.div``;
@@ -61,11 +68,13 @@ function ImageViewer({
           </InputGroup.Text>
         </ButtonGroup>
       </ResultNavigationWrapper>
-      <ResultImg
-        src={currentSource}
-        alt="Result of the research"
-        crossOrigin="anonymous"
-      />
+      <ImageContainer>
+        <ResultImg
+          src={currentSource}
+          alt="Result of the research"
+          crossOrigin="anonymous"
+        />
+      </ImageContainer>
     </ImageViewerWrapper>
   );
 }

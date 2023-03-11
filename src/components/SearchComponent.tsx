@@ -8,9 +8,16 @@ import SearchBar from './SearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
 
+const SearchComponentWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
+
 const ResultDisplayContainer = styled.div`
   background-color: lightgrey;
   display: flex;
+  flex: 1;
   flex-direction: row;
   padding: 10px;
   margin: 20px;
@@ -55,7 +62,7 @@ function SearchComponent() {
     if (title || author || keywords) {
       handleSearch();
     }
-  }, []);
+  }, [handleSearch, searchParams]);
 
   /* HOOKS */
   /**
@@ -81,10 +88,10 @@ function SearchComponent() {
 
   /* TSX */
   return (
-    <>
+    <SearchComponentWrapper>
       <SearchBar onSearch={handleSearch} />
       <ResultDisplayContainer>{renderResults()}</ResultDisplayContainer>
-    </>
+    </SearchComponentWrapper>
   );
 }
 

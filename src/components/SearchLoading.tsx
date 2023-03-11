@@ -5,7 +5,7 @@ const SearchLoadingContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 800px;
+  height: 100%;
   align-items: center;
   color: gray;
 `;

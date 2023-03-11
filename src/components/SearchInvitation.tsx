@@ -4,7 +4,7 @@ const SearchInvitationContainer = styled.div`
   flex: 1;
   display: flex;
   justify-content: center;
-  height: 800px;
+  height: 100%;
   align-items: center;
   color: gray;
 `;

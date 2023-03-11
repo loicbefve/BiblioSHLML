@@ -22,7 +22,7 @@ const SearchBarWrapper = styled.div`
   flex-direction: column;
 `;
 
-const IntroductionText = styled.p`
+const IntroductionText = styled.div`
   padding: 10px;
 `;
 

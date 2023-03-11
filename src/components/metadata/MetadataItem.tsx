@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 const MetadataWrapper = styled.div`
   padding: 0 10px;
+  border: solid 1px grey;
+  text-align: center;
+  background-color: white;
+  border-radius: 10px;
 `;
 
 const MetadataContainer = styled.div`

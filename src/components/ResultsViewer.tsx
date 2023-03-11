@@ -5,7 +5,6 @@ import ImageViewer from './ImageViewer';
 import MetadataViewer from './metadata/MetadataViewer';
 
 function parseHash(hashToParse: string, results: ImprimeResearchResult[]) {
-  console.log('parseHash called', results);
   const maybeDataIndexFromHash = hashToParse.match(/(?<=r)[0-9]/);
   const maybeImageIndexFromHash = hashToParse.match(/(?<=i)[0-9]/);
 
