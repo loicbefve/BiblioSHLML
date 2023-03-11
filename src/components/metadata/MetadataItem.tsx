@@ -3,7 +3,6 @@ import styled from 'styled-components';
 const MetadataWrapper = styled.div`
   padding: 0 10px;
   border: solid 1px grey;
-  text-align: center;
   background-color: white;
   border-radius: 10px;
 `;
@@ -19,6 +18,8 @@ const MetadataName = styled.div`
 
 const MetadataValue = styled.div`
   margin-left: 10px;
+  flex: 1;
+  text-align: left;
 `;
 
 interface IProps {

@@ -12,7 +12,7 @@ const MetadataViewerWrapper = styled.div`
 const MetadatasWrapper = styled.div`
   display: grid;
   grid-gap: 10px;
-  grid-template-columns: auto auto;
+  grid-template-columns: 50% 50%;
   padding: 20px;
 `;
 
