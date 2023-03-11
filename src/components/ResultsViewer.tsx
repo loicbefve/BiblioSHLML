@@ -1,18 +1,8 @@
-import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ImprimeResearchResult } from '../utils/Types';
 import ImageViewer from './ImageViewer';
 import MetadataViewer from './metadata/MetadataViewer';
-
-/* STYLED COMPONENTS */
-const ResultDisplayContainer = styled.div`
-  background-color: lightgrey;
-  display: flex;
-  flex-direction: row;
-  padding: 10px;
-  margin: 20px;
-`;
 
 function parseHash(hashToParse: string, results: ImprimeResearchResult[]) {
   console.log('parseHash called', results);
@@ -73,7 +63,7 @@ function ResultsViewer({ results }: IProps) {
   const currentResult = results[currentDataIndex];
 
   return (
-    <ResultDisplayContainer>
+    <>
       <ImageViewer
         images={currentResult.urls}
         currentImageIndex={currentImageIndex}
@@ -84,7 +74,7 @@ function ResultsViewer({ results }: IProps) {
         currentDataIndex={currentDataIndex}
         setCurrentDataIndex={setCurrentDataIndex}
       />
-    </ResultDisplayContainer>
+    </>
   );
 }
 

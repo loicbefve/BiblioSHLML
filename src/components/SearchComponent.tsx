@@ -1,9 +1,19 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import styled from 'styled-components';
 import { PageState, ImprimeResearchResult } from '../utils/Types';
 import mockData from '../utils/MockData';
 import ResultsViewer from './ResultsViewer';
 import SearchBar from './SearchBar';
+import SearchInvitation from './SearchInvitation';
+
+const ResultDisplayContainer = styled.div`
+  background-color: lightgrey;
+  display: flex;
+  flex-direction: row;
+  padding: 10px;
+  margin: 20px;
+`;
 
 /* FUNCTIONS */
 function simulateAsyncRequest(): Promise<string> {
@@ -58,7 +68,7 @@ function SearchComponent() {
   const renderResults = () => {
     switch (pageState) {
       case PageState.NoData:
-        return <div>Nothing to display make your first research</div>;
+        return <SearchInvitation />;
       case PageState.Loading:
         return <div>Loading the data</div>;
       case PageState.Loaded:
@@ -72,7 +82,7 @@ function SearchComponent() {
   return (
     <>
       <SearchBar onSearch={handleSearch} />
-      {renderResults()}
+      <ResultDisplayContainer>{renderResults()}</ResultDisplayContainer>
     </>
   );
 }
