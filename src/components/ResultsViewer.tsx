@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { Dispatch, SetStateAction } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ImprimeResearchResult } from '../utils/Types';
 import ImageViewer from './ImageViewer';
 import MetadataViewer from './metadata/MetadataViewer';
@@ -13,24 +14,55 @@ const ResultDisplayContainer = styled.div`
   margin: 20px;
 `;
 
+function parseHash(hashToParse: string, results: ImprimeResearchResult[]) {
+  console.log('parseHash called', results);
+  const maybeDataIndexFromHash = hashToParse.match(/(?<=r)[0-9]/);
+  const maybeImageIndexFromHash = hashToParse.match(/(?<=i)[0-9]/);
+
+  const dataIndexFromHash = maybeDataIndexFromHash
+    ? parseInt(maybeDataIndexFromHash.toString(), 10)
+    : 1;
+  const imageIndexFromHash = maybeImageIndexFromHash
+    ? parseInt(maybeImageIndexFromHash.toString(), 10)
+    : 1;
+
+  const parsedDataIndex =
+    dataIndexFromHash <= results.length ? dataIndexFromHash : 1;
+  const parsedImageIndex =
+    imageIndexFromHash <= results[parsedDataIndex - 1].urls.length
+      ? imageIndexFromHash
+      : 1;
+
+  return { parsedDataIndex, parsedImageIndex };
+}
+
 interface IProps {
   results: ImprimeResearchResult[];
-  currentDataIndex: number;
-  setCurrentDataIndex: Dispatch<SetStateAction<number>>;
-  currentImageIndex: number;
-  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
-function ResultsViewer({
-  results,
-  currentDataIndex,
-  setCurrentDataIndex,
-  currentImageIndex,
-  setCurrentImageIndex,
-}: IProps) {
-  // useEffect(() => {
-  //   const newHash = `r${currentDataIndex + 1}-i${currentImageIndex + 1}`;
-  //   window.location.hash = newHash;
-  // }, [currentImageIndex, currentDataIndex]);
+function ResultsViewer({ results }: IProps) {
+  const [currentDataIndex, setCurrentDataIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { hash } = useLocation();
+
+  /**
+   * This hook will write in the URL the currently navigated result
+   * allowing the user to copy/paste the link and come back to the exact same displayed result.
+   */
+  useEffect(() => {
+    window.location.hash = `r${currentDataIndex + 1}-i${currentImageIndex + 1}`;
+  }, [currentImageIndex, currentDataIndex]);
+
+  /**
+   * This hook will at first render of the result page set the current data and
+   * image index as contained inside the hash part of the URL
+   */
+  useEffect(() => {
+    if (hash) {
+      const { parsedDataIndex, parsedImageIndex } = parseHash(hash, results);
+      setCurrentDataIndex(parsedDataIndex - 1);
+      setCurrentImageIndex(parsedImageIndex - 1);
+    }
+  }, []);
 
   if (results.length < 1) {
     return (
