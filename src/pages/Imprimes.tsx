@@ -13,13 +13,17 @@ const ImprimesWrapper = styled.div`
   flex-direction: column;
 `;
 
+const searchInvitationMessage =
+  'Effectuez votre recherche dans les Imprimés de la société en utilisant le' +
+  ' formulaire ci-dessus';
+
 /* COMPONENT */
 function Imprimes() {
   return (
     <ImprimesWrapper>
-      <Title>Recherche dans la liste des imprimés</Title>
+      <Title>Recherche dans la liste des Imprimés</Title>
       <hr />
-      <SearchComponent />
+      <SearchComponent searchInvitationMessage={searchInvitationMessage} />
     </ImprimesWrapper>
   );
 }

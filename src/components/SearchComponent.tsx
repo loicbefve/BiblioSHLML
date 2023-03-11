@@ -33,10 +33,14 @@ function simulateAsyncRequest(): Promise<string> {
   });
 }
 
+interface IProps {
+  searchInvitationMessage: string;
+}
+
 /**
  * Component
  */
-function SearchComponent() {
+function SearchComponent({ searchInvitationMessage }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ImprimeResearchResult[]>([]);
   const [pageState, setPageState] = useState(PageState.NoData);
@@ -77,7 +81,9 @@ function SearchComponent() {
   const renderResults = () => {
     switch (pageState) {
       case PageState.NoData:
-        return <SearchInvitation />;
+        return (
+          <SearchInvitation searchInvitationMessage={searchInvitationMessage} />
+        );
       case PageState.Loading:
         return <SearchLoading />;
       case PageState.Loaded:
