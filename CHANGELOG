@@ -16,6 +16,7 @@
   - Paramétrisation du type de résultat et de l'URL API dans le SearchComponent
 - Styliser le Footer
 - Ajouter une conversion code technique de métadonnées vers texte affiché.
+- L'affichage ou non d'images est un paramètre du composant SearchComponent
 
 # Back-End :
 
