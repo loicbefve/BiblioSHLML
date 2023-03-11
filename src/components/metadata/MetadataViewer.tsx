@@ -18,6 +18,10 @@ const MetadatasWrapper = styled.div`
 
 const NavigationWrapper = styled.div``;
 
+const Title = styled.h2`
+  margin-top: 1rem;
+`;
+
 interface IProps {
   results: ImprimeResearchResult[];
   currentDataIndex: number;
@@ -65,6 +69,7 @@ function MetadataViewer({
           </InputGroup.Text>
         </ButtonGroup>
       </NavigationWrapper>
+      <Title>{currentResult.metadatas.titre}</Title>
       <MetadatasWrapper>
         {metadatas.map(([key, value]) => (
           <MetadataItem

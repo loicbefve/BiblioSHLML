@@ -1,5 +1,6 @@
 export interface ResearchResult {
   metadatas: {
+    titre: string;
     [key: string]: string;
   };
   urls: string[];
