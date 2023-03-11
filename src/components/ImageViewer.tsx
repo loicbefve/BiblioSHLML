@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { Dispatch, SetStateAction, useEffect } from 'react';
-import logo_shlml from '../assets/shlml_logo.jpg';
+import { Dispatch, SetStateAction } from 'react';
 
 const ImageViewerWrapper = styled.div`
   flex: 1;
