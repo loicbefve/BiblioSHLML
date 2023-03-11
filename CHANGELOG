@@ -1,0 +1,28 @@
+# Front-End
+
+## Fait :
+- Layout : Header, Main, Footer
+- Navigation avec React router entre les différentes pages de recherche
+- Page de recherche :
+  - Possibilité de lancer une recherche (données mockées) sur la page Imprimées.
+  - Possibilité de naviguer les résultats.
+  - Enregistrement de tous les paramètres de recherche dans l'URL (pour le copié/collé).
+
+## À faire :
+- Affichage de vrai images dans le composant ImageViewer (mockées).
+- Dupliquer le composant de recherche dans toutes les pages de recherche
+  - Paramétrisation du type de résultat et de l'URL API dans le SearchComponent
+
+# Back-End :
+
+## Fait :
+
+## À faire :
+- Créer le service.
+- Connecter la base de données.
+- Créer le script csv to sql.
+- Échanger des messages avec le Front-End.
+- Implémenter la recherche.
+- Faire fonctionner une route.
+- Faire fonctionner toutes les routes.
+- Sécurité et authentification front/back (si pas en local).
