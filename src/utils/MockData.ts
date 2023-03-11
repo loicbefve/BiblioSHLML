@@ -14,7 +14,7 @@ const mockImprimes = {
         etat: 'bon',
         commentaire: 'Pas mal',
       },
-      urls: ['a', 'b'],
+      urls: ['../../public/R_Z-0001.jpg', '../../public/R_Z-0002.jpg'],
     },
     {
       metadatas: {
@@ -30,7 +30,7 @@ const mockImprimes = {
         etat: 'bon2',
         commentaire: 'Pas mal2',
       },
-      urls: ['a2', 'b2'],
+      urls: ['../../public/R_Z-0003.jpg', '../../public/R_Z-0004.jpg'],
     },
   ],
 };

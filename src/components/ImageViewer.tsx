@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import logo_shlml from '../assets/shlml_logo.jpg';
 
 const ImageViewerWrapper = styled.div`
@@ -26,7 +26,7 @@ function ImageViewer({
   setCurrentImageIndex,
 }: IProps) {
   const numberOfImages = images.length;
-
+  const currentSource = images[currentImageIndex];
   const handlePreviousClick = () => {
     setCurrentImageIndex(currentImageIndex - 1);
   };
@@ -62,7 +62,11 @@ function ImageViewer({
           </InputGroup.Text>
         </ButtonGroup>
       </ResultNavigationWrapper>
-      <ResultImg src={logo_shlml} alt="Result of the research" />
+      <ResultImg
+        src={currentSource}
+        alt="Result of the research"
+        crossOrigin="anonymous"
+      />
     </ImageViewerWrapper>
   );
 }
