@@ -77,3 +77,50 @@ export const mockFactums = {
     },
   ],
 };
+
+export const mockFondDocumentaire = {
+  data: [
+    {
+      metadatas: {
+        carton: 'De droite',
+        fonds: 'Wiener',
+        type_de_document: 'Prospectus',
+        auteur: 'Guy de Maupassant',
+        auteur_bis: 'Loïc Befve',
+        titre: 'De la guerre',
+        couverture: 'Par René Wiener',
+        langue: 'allemand',
+        edition: 'de la nuit',
+        datation: '1914',
+        contenu: 'Beaucoup de choses',
+        etat: 'online',
+        ancien_proprietaire: 'Napoléon',
+        notes: 'Passable',
+        don: 'Oui, merci !',
+        emplacement_initiale_dans_la_bibliotheque: 'Sur une étagère',
+      },
+      urls: ['../../public/R_Z-0001.jpg', '../../public/R_Z-0002.jpg'],
+    },
+    {
+      metadatas: {
+        carton: 'De droite222',
+        fonds: 'Wiener222',
+        type_de_document: 'Prospectus222',
+        auteur: 'Guy de Maupassant222',
+        auteur_bis: 'Loïc Befve222',
+        titre: 'De la guerre222',
+        couverture: 'Par René Wiener222',
+        langue: 'allemand222',
+        edition: 'de la nuit222',
+        datation: '1914222',
+        contenu: 'Beaucoup de choses222',
+        etat: 'online222',
+        ancien_proprietaire: 'Napoléon222',
+        notes: 'Passable222',
+        don: 'Oui, merci !222',
+        emplacement_initiale_dans_la_bibliotheque: 'Sur une étagère222',
+      },
+      urls: ['../../public/R_Z-0003.jpg', '../../public/R_Z-0004.jpg'],
+    },
+  ],
+};
