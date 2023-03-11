@@ -10,10 +10,11 @@
 - Affichage de vrai images dans le composant ImageViewer (mockées).
 - Styliser la page d'invitation à la première recherche
 - Styliser le page de chargement des données
+- Composant de recherche disponible (avec données mockées) pour Imprimés, Factums, Fond Documentaire, Fond Johannique
+
 
 ## À faire :
-- Dupliquer le composant de recherche dans toutes les pages de recherche
-  - Paramétrisation du type de résultat et de l'URL API dans le SearchComponent
+- Adapter le SearchComponent pour être utiliser pour les pages spéciales 'Manuscrits' et 'Index du Pays-Lorrain'
 - Styliser le Footer
 - Ajouter une conversion code technique de métadonnées vers texte affiché.
 - L'affichage ou non d'images est un paramètre du composant SearchComponent
