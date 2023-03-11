@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import { ImprimeResearchResult } from '../utils/Types';
 import ImageViewer from './ImageViewer';
 import MetadataViewer from './metadata/MetadataViewer';
@@ -15,10 +15,22 @@ const ResultDisplayContainer = styled.div`
 
 interface IProps {
   results: ImprimeResearchResult[];
+  currentDataIndex: number;
+  setCurrentDataIndex: Dispatch<SetStateAction<number>>;
+  currentImageIndex: number;
+  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
-function ResultsViewer({ results }: IProps) {
-  const [currentDataIndex, setCurrentDataIndex] = useState(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+function ResultsViewer({
+  results,
+  currentDataIndex,
+  setCurrentDataIndex,
+  currentImageIndex,
+  setCurrentImageIndex,
+}: IProps) {
+  // useEffect(() => {
+  //   const newHash = `r${currentDataIndex + 1}-i${currentImageIndex + 1}`;
+  //   window.location.hash = newHash;
+  // }, [currentImageIndex, currentDataIndex]);
 
   if (results.length < 1) {
     return (
