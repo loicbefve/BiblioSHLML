@@ -14,7 +14,7 @@ export const mockImprimes = {
         etat: 'bon',
         commentaire: 'Pas mal',
       },
-      urls: ['../../public/R_Z-0001.jpg', '../../public/R_Z-0002.jpg'],
+      urls: ['/R_Z-0001.jpg', '/R_Z-0002.jpg'],
     },
     {
       metadatas: {
@@ -30,7 +30,7 @@ export const mockImprimes = {
         etat: 'bon2',
         commentaire: 'Pas mal2',
       },
-      urls: ['../../public/R_Z-0003.jpg', '../../public/R_Z-0004.jpg'],
+      urls: ['/R_Z-0003.jpg', '/R_Z-0004.jpg'],
     },
   ],
 };
@@ -54,7 +54,7 @@ export const mockFactums = {
         note: '5/5',
         emplacement: 'bibliotheque',
       },
-      urls: ['../../public/R_Z-0001.jpg', '../../public/R_Z-0002.jpg'],
+      urls: ['/R_Z-0001.jpg', '/R_Z-0002.jpg'],
     },
     {
       metadatas: {
@@ -73,7 +73,7 @@ export const mockFactums = {
         note: '5/5222',
         emplacement: 'bibliotheque222',
       },
-      urls: ['../../public/R_Z-0003.jpg', '../../public/R_Z-0004.jpg'],
+      urls: ['/R_Z-0003.jpg', '/R_Z-0004.jpg'],
     },
   ],
 };
