@@ -35,6 +35,9 @@ function parseHash(hashToParse: string, results: ImprimeResearchResult[]) {
   return { parsedDataIndex, parsedImageIndex };
 }
 
+/**
+ * Component
+ */
 function SearchComponent() {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ImprimeResearchResult[]>([]);
@@ -54,11 +57,11 @@ function SearchComponent() {
     // TODO : Real backend call
     await simulateAsyncRequest();
     setSearchResult(mockData.data);
-    console.log(`Result after setSearch ${searchResult}`);
+    clearInterval(undefined);
     setPageState(PageState.Loaded);
-  }, [searchResult]);
+  }, []);
 
-  async function firstLoadFromURL() {
+  const firstLoadFromURL = useCallback(async () => {
     const title = searchParams.get('title');
     const author = searchParams.get('author');
     const keywords = searchParams.get('keywords');
@@ -85,7 +88,7 @@ function SearchComponent() {
         );
       }
     }
-  }
+  }, []);
 
   /* HOOKS */
   /**
