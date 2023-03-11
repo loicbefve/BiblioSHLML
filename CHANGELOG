@@ -7,14 +7,17 @@
   - Possibilité de lancer une recherche (données mockées) sur la page Imprimées.
   - Possibilité de naviguer les résultats.
   - Enregistrement de tous les paramètres de recherche dans l'URL (pour le copié/collé).
-  - Affichage de vrai images dans le composant ImageViewer (mockées).
+- Affichage de vrai images dans le composant ImageViewer (mockées).
+- Styliser la page d'invitation à la première recherche
+- Styliser le page de chargement des données
+
+
 
 
 ## À faire :
-- Styliser la page d'invitation à la première recherche
-- Styliser le page de chargement des données
 - Dupliquer le composant de recherche dans toutes les pages de recherche
   - Paramétrisation du type de résultat et de l'URL API dans le SearchComponent
+- Styliser le Footer
 
 # Back-End :
 
