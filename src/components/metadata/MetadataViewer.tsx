@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
 import { Dispatch, SetStateAction } from 'react';
 import MetadataItem from './MetadataItem';
-import { ImprimeResearchResult } from '../../utils/Types';
+import { ResearchResult } from '../../utils/Types';
 
 const MetadataViewerWrapper = styled.div`
   flex: 1;
@@ -23,7 +23,7 @@ const Title = styled.h2`
 `;
 
 interface IProps {
-  results: ImprimeResearchResult[];
+  results: ResearchResult[];
   currentDataIndex: number;
   setCurrentDataIndex: Dispatch<SetStateAction<number>>;
 }

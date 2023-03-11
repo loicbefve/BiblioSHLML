@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SearchComponent from '../components/SearchComponent';
+import { mockImprimes } from '../utils/MockData';
 
 /* STYLED COMPONENTS */
 const Title = styled.h3`
@@ -23,7 +24,10 @@ function Imprimes() {
     <ImprimesWrapper>
       <Title>Recherche dans la liste des Imprimés</Title>
       <hr />
-      <SearchComponent searchInvitationMessage={searchInvitationMessage} />
+      <SearchComponent
+        searchInvitationMessage={searchInvitationMessage}
+        apiURLToCall={mockImprimes.data}
+      />
     </ImprimesWrapper>
   );
 }

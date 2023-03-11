@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
-import { ImprimeResearchResult } from '../utils/Types';
+import { ResearchResult } from '../utils/Types';
 import ImageViewer from './ImageViewer';
 import MetadataViewer from './metadata/MetadataViewer';
 
@@ -11,7 +11,7 @@ const VerticalSeparator = styled.div`
   width: 1px;
 `;
 
-function parseHash(hashToParse: string, results: ImprimeResearchResult[]) {
+function parseHash(hashToParse: string, results: ResearchResult[]) {
   const maybeDataIndexFromHash = hashToParse.match(/(?<=r)[0-9]/);
   const maybeImageIndexFromHash = hashToParse.match(/(?<=i)[0-9]/);
 
@@ -33,7 +33,7 @@ function parseHash(hashToParse: string, results: ImprimeResearchResult[]) {
 }
 
 interface IProps {
-  results: ImprimeResearchResult[];
+  results: ResearchResult[];
 }
 function ResultsViewer({ results }: IProps) {
   const [currentDataIndex, setCurrentDataIndex] = useState(0);

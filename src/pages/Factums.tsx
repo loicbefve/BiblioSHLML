@@ -1,6 +1,7 @@
 /* STYLED COMPONENTS */
 import styled from 'styled-components';
 import SearchComponent from '../components/SearchComponent';
+import { mockFactums } from '../utils/MockData';
 
 const Title = styled.h3`
   text-align: center;
@@ -21,7 +22,10 @@ function Factums() {
     <FactumsWrapper>
       <Title>Recherche dans la liste des Factums</Title>
       <hr />
-      <SearchComponent searchInvitationMessage={searchInvitationMessage} />
+      <SearchComponent
+        searchInvitationMessage={searchInvitationMessage}
+        apiURLToCall={mockFactums.data}
+      />
     </FactumsWrapper>
   );
 }

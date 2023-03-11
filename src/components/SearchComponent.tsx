@@ -1,8 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState, ImprimeResearchResult } from '../utils/Types';
-import mockData from '../utils/MockData';
+import { PageState, ResearchResult } from '../utils/Types';
 import ResultsViewer from './ResultsViewer';
 import SearchBar from './SearchBar';
 import SearchInvitation from './SearchInvitation';
@@ -35,14 +34,17 @@ function simulateAsyncRequest(): Promise<string> {
 
 interface IProps {
   searchInvitationMessage: string;
+
+  // TODO: Later make it the real API URI
+  apiURLToCall: ResearchResult[];
 }
 
 /**
  * Component
  */
-function SearchComponent({ searchInvitationMessage }: IProps) {
+function SearchComponent({ searchInvitationMessage, apiURLToCall }: IProps) {
   /* STATES */
-  const [searchResult, setSearchResult] = useState<ImprimeResearchResult[]>([]);
+  const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
   const [pageState, setPageState] = useState(PageState.NoData);
   const [searchParams] = useSearchParams();
 
@@ -54,10 +56,10 @@ function SearchComponent({ searchInvitationMessage }: IProps) {
     setPageState(PageState.Loading);
     // TODO : Real backend call
     await simulateAsyncRequest();
-    setSearchResult(mockData.data);
+    setSearchResult(apiURLToCall);
     clearInterval(undefined);
     setPageState(PageState.Loaded);
-  }, []);
+  }, [apiURLToCall]);
 
   const firstLoadFromURL = useCallback(async () => {
     const title = searchParams.get('title');
