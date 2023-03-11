@@ -28,7 +28,7 @@ function simulateAsyncRequest(): Promise<string> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve('Response from server');
-    }, 2000);
+    }, 300);
   });
 }
 

@@ -99,7 +99,7 @@ export const mockFondDocumentaire = {
         don: 'Oui, merci !',
         emplacement_initiale_dans_la_bibliotheque: 'Sur une étagère',
       },
-      urls: ['../../public/R_Z-0001.jpg', '../../public/R_Z-0002.jpg'],
+      urls: ['/R_Z-0001.jpg', '/R_Z-0002.jpg'],
     },
     {
       metadatas: {
@@ -120,7 +120,7 @@ export const mockFondDocumentaire = {
         don: 'Oui, merci !222',
         emplacement_initiale_dans_la_bibliotheque: 'Sur une étagère222',
       },
-      urls: ['../../public/R_Z-0003.jpg', '../../public/R_Z-0004.jpg'],
+      urls: ['/R_Z-0003.jpg', '/R_Z-0004.jpg'],
     },
   ],
 };
