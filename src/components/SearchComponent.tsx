@@ -15,7 +15,8 @@ const SearchComponentWrapper = styled.div`
 `;
 
 const ResultDisplayContainer = styled.div`
-  background-color: lightgrey;
+  background-color: rgba(211, 211, 211, 0.35);
+  border-radius: 5px;
   display: flex;
   flex: 1;
   flex-direction: row;

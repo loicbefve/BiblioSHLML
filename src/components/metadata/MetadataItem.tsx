@@ -29,7 +29,9 @@ function MetadataItem({ metadataName, metadataValue }: IProps) {
   return (
     <MetadataWrapper>
       <MetadataContainer>
-        <MetadataName>{metadataName} :</MetadataName>
+        <MetadataName>
+          {metadataName.charAt(0).toUpperCase() + metadataName.slice(1)} :
+        </MetadataName>
         <MetadataValue>{metadataValue}</MetadataValue>
       </MetadataContainer>
     </MetadataWrapper>
