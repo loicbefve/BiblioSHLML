@@ -9,13 +9,10 @@ const SearchInvitationContainer = styled.div`
   color: gray;
 `;
 
-const SearchInvitationText = styled.h1``;
 function SearchInvitation() {
   return (
     <SearchInvitationContainer>
-      <SearchInvitationText>
-        Effectuez votre recherche grâce au formulaire ci-dessus.
-      </SearchInvitationText>
+      <h1>Effectuez votre recherche grâce au formulaire ci-dessus.</h1>
     </SearchInvitationContainer>
   );
 }

@@ -6,6 +6,7 @@ import mockData from '../utils/MockData';
 import ResultsViewer from './ResultsViewer';
 import SearchBar from './SearchBar';
 import SearchInvitation from './SearchInvitation';
+import SearchLoading from './SearchLoading';
 
 const ResultDisplayContainer = styled.div`
   background-color: lightgrey;
@@ -70,7 +71,7 @@ function SearchComponent() {
       case PageState.NoData:
         return <SearchInvitation />;
       case PageState.Loading:
-        return <div>Loading the data</div>;
+        return <SearchLoading />;
       case PageState.Loaded:
         return <ResultsViewer results={searchResult} />;
       default:
