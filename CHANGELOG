@@ -11,6 +11,8 @@
 
 
 ## À faire :
+- Styliser la page d'invitation à la première recherche
+- Styliser le page de chargement des données
 - Dupliquer le composant de recherche dans toutes les pages de recherche
   - Paramétrisation du type de résultat et de l'URL API dans le SearchComponent
 
