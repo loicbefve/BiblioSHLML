@@ -12,10 +12,11 @@
 - Styliser le page de chargement des données
 - Composant de recherche disponible (avec données mockées) pour Imprimés, Factums, Fond Documentaire, Fond Johannique
 - Le lien actif est maintenant visible
+- Quand je change de résultat, je reviens désormais à l'image n°1 du résultat suivant.
+
 
 
 ## À faire :
-- Quand je change de résultat, je dois revenir à l'image n°1 du résultat suivant.
 - Adapter le SearchComponent pour être utiliser pour les pages spéciales 'Manuscrits' et 'Index du Pays-Lorrain'
 - Styliser le Footer
 - Ajouter une conversion code technique de métadonnées vers texte affiché.

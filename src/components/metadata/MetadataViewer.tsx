@@ -26,11 +26,13 @@ interface IProps {
   results: ResearchResult[];
   currentDataIndex: number;
   setCurrentDataIndex: Dispatch<SetStateAction<number>>;
+  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
 function MetadataViewer({
   results,
   currentDataIndex,
   setCurrentDataIndex,
+  setCurrentImageIndex,
 }: IProps) {
   const numberOfResults = results.length;
   const currentResult = results[currentDataIndex];
@@ -38,10 +40,12 @@ function MetadataViewer({
 
   const handlePreviousClick = () => {
     setCurrentDataIndex(currentDataIndex - 1);
+    setCurrentImageIndex(0);
   };
 
   const handleNextClick = () => {
     setCurrentDataIndex(currentDataIndex + 1);
+    setCurrentImageIndex(0);
   };
 
   return (

@@ -80,6 +80,7 @@ function ResultsViewer({ results }: IProps) {
         results={results}
         currentDataIndex={currentDataIndex}
         setCurrentDataIndex={setCurrentDataIndex}
+        setCurrentImageIndex={setCurrentImageIndex}
       />
     </>
   );
