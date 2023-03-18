@@ -17,10 +17,10 @@
 
 
 ## À faire :
-- Adapter le FullSearchComponent pour être utiliser pour les pages spéciales 'Manuscrits' et 'Index du Pays-Lorrain'
+- Adapter le CompleteSearchComponent pour être utiliser pour les pages spéciales 'Manuscrits' et 'Index du Pays-Lorrain'
 - Styliser le Footer
 - Ajouter une conversion code technique de métadonnées vers texte affiché.
-- L'affichage ou non d'images est un paramètre du composant FullSearchComponent
+- L'affichage ou non d'images est un paramètre du composant CompleteSearchComponent
 
 # Back-End :
 

@@ -80,7 +80,7 @@ export interface FondsJohanniquesResearchResult extends ResearchResult {
   urls: string[];
 }
 
-export interface ManuscritsAndIndexResearchResult {
+export interface SimpleResearchResult {
   metadatas: {
     id: string;
     commentaires: string;

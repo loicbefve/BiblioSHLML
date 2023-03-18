@@ -124,3 +124,30 @@ export const mockFondDocumentaire = {
     },
   ],
 };
+
+export const mockManuscrits = {
+  data: [
+    {
+      metadatas: {
+        id: 1,
+        commentaires:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Sed risus ultricies tristique nulla aliquet enim tortor at. Urna neque viverra justo nec ultrices dui sapien eget. Eget velit aliquet sagittis id consectetur purus ut faucibus. Adipiscing diam donec adipiscing tristique risus nec feugiat. Nulla aliquet enim tortor at auctor urna. Nullam non nisi est sit amet facilisis. Quam elementum pulvinar etiam non. Nullam eget felis eget nunc lobortis. Et sollicitudin ac orci phasellus egestas tellus rutrum tellus pellentesque.\n' +
+          '\n' +
+          'Ultrices tincidunt arcu non sodales. Vestibulum lectus mauris ultrices eros in cursus turpis massa. Et sollicitudin ac orci phasellus egestas. Ultrices dui sapien eget mi proin sed. Tellus elementum sagittis vitae et leo duis ut diam. Malesuada pellentesque elit eget gravida cum sociis natoque penatibus. Ac tortor vitae purus faucibus. Fusce id velit ut tortor pretium viverra suspendisse potenti. Ut aliquam purus sit amet luctus venenatis lectus magna. Egestas dui id ornare arcu odio ut sem nulla. Laoreet id donec ultrices tincidunt arcu. Eget egestas purus viverra accumsan in nisl nisi scelerisque. Aliquet porttitor lacus luctus accumsan tortor. Egestas fringilla phasellus faucibus scelerisque. Tortor pretium viverra suspendisse potenti. Elit duis tristique sollicitudin nibh sit amet commodo nulla facilisi. Nisi quis eleifend quam adipiscing vitae proin. Quam lacus suspendisse faucibus interdum. Elementum pulvinar etiam non quam.\n' +
+          '\n' +
+          'Id cursus metus aliquam eleifend. Eget egestas purus viverra accumsan in. Sollicitudin ac orci phasellus egestas. Urna porttitor rhoncus dolor purus non enim. Eleifend donec pretium vulputate sapien nec. Ac feugiat sed lectus vestibulum mattis ullamcorper. Vel eros donec ac odio tempor orci dapibus ultrices. Neque vitae tempus quam pellentesque. Mauris pellentesque pulvinar pellentesque habitant morbi tristique senectus. Eu facilisis sed odio morbi quis commodo odio. Sed id semper risus in hendrerit gravida rutrum quisque. A lacus vestibulum sed arcu non odio euismod. Posuere ac ut consequat semper viverra nam libero. Eleifend quam adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus.\n',
+      },
+      urls: [],
+    },
+    {
+      metadatas: {
+        id: 2,
+        commentaires:
+          'Erat imperdiet sed euismod nisi porta lorem mollis aliquam ut. Libero enim sed faucibus turpis. Dolor sit amet consectetur adipiscing. Et molestie ac feugiat sed lectus vestibulum. Vitae suscipit tellus mauris a. Scelerisque eleifend donec pretium vulputate sapien nec sagittis. Amet consectetur adipiscing elit duis tristique sollicitudin nibh. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Quisque sagittis purus sit amet volutpat. Posuere morbi leo urna molestie at elementum eu. Varius quam quisque id diam vel quam.\n' +
+          '\n' +
+          'Sed velit dignissim sodales ut eu. Quis lectus nulla at volutpat diam ut venenatis. Tortor consequat id porta nibh venenatis cras sed felis. Id leo in vitae turpis massa sed. Turpis cursus in hac habitasse platea dictumst. Lacus laoreet non curabitur gravida arcu. Hac habitasse platea dictumst quisque sagittis purus sit. At lectus urna duis convallis. Augue lacus viverra vitae congue eu. Hac habitasse platea dictumst quisque sagittis. Congue eu consequat ac felis donec et odio pellentesque. Volutpat ac tincidunt vitae semper quis lectus nulla. Penatibus et magnis dis parturient montes nascetur ridiculus. Semper feugiat nibh sed pulvinar proin. Faucibus ornare suspendisse sed nisi lacus. Ut tortor pretium viverra suspendisse potenti nullam ac tortor vitae. Volutpat odio facilisis mauris sit. Eget mauris pharetra et ultrices neque ornare aenean. Ante metus dictum at tempor.',
+      },
+      urls: ['/R_Z-0003.jpg', '/R_Z-0004.jpg'],
+    },
+  ],
+};

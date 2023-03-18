@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 import MetadataItem from './MetadataItem';
 import { ResearchResult } from '../../utils/Types';
 
@@ -26,7 +26,7 @@ interface IProps {
   results: ResearchResult[];
   currentDataIndex: number;
   setCurrentDataIndex: Dispatch<SetStateAction<number>>;
-  setCurrentImageIndex?: Dispatch<SetStateAction<number>>;
+  setCurrentImageIndex: Dispatch<SetStateAction<number>>;
 }
 function MetadataViewer({
   results,
@@ -38,19 +38,15 @@ function MetadataViewer({
   const currentResult = results[currentDataIndex];
   const metadatas = Object.entries(currentResult.metadatas);
 
-  const handlePreviousClick = () => {
+  const handlePreviousClick = useCallback(() => {
     setCurrentDataIndex(currentDataIndex - 1);
-    if (setCurrentImageIndex) {
-      setCurrentImageIndex(0);
-    }
-  };
+    setCurrentImageIndex(0);
+  }, [currentDataIndex, setCurrentDataIndex, setCurrentImageIndex]);
 
-  const handleNextClick = () => {
+  const handleNextClick = useCallback(() => {
     setCurrentDataIndex(currentDataIndex + 1);
-    if (setCurrentImageIndex) {
-      setCurrentImageIndex(0);
-    }
-  };
+    setCurrentImageIndex(0);
+  }, [currentDataIndex, setCurrentDataIndex, setCurrentImageIndex]);
 
   return (
     <MetadataViewerWrapper>

@@ -34,7 +34,7 @@ interface IProps {
 /**
  * Component
  */
-function FullSearchComponent({
+function CompleteSearchComponent({
   searchInvitationMessage,
   apiURLToCall,
 }: IProps) {
@@ -99,4 +99,4 @@ function FullSearchComponent({
   );
 }
 
-export default FullSearchComponent;
+export default CompleteSearchComponent;
