@@ -1,5 +1,5 @@
 import { Navbar, Nav } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { useState } from 'react';
 
@@ -28,7 +28,7 @@ function Header() {
 
   return (
     <StyledNavbar expand="md" bg="dark" variant="dark" expanded={expanded}>
-      <Navbar.Brand as={Link} to="/">
+      <Navbar.Brand as={NavLink} to="/">
         Fond <b>Bibliographique</b>
       </Navbar.Brand>
       <Navbar.Toggle
@@ -41,43 +41,43 @@ function Header() {
       >
         <StyleNav>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/imprimes">
+            <Nav.Link as={NavLink} to="/imprimes">
               Imprimés
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/factums">
+            <Nav.Link as={NavLink} to="/factums">
               Factums
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/fonds_documentaire">
+            <Nav.Link as={NavLink} to="/fonds_documentaire">
               Fonds Documentaire
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/fonds_johannique">
+            <Nav.Link as={NavLink} to="/fonds_johannique">
               Fonds Johannique
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/manuscrits">
+            <Nav.Link as={NavLink} to="/manuscrits">
               Manuscrits
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/index_pays_lorrain">
+            <Nav.Link as={NavLink} to="/index_pays_lorrain">
               Index du Pays-Lorrain
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={Link} to="/contact">
+            <Nav.Link as={NavLink} to="/contact">
               Contact
             </Nav.Link>
           </StyledNavItem>
         </StyleNav>
         <StyleNav>
-          <Nav.Link as={Link} to="/contact">
+          <Nav.Link as={NavLink} to="/contact">
             Société d&apos;Histoire de la Lorraine et du Musée Lorrain
           </Nav.Link>
         </StyleNav>
