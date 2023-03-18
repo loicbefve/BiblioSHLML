@@ -2,10 +2,11 @@ import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { PageState, ResearchResult } from '../../utils/Types';
-import SimpleSearchBar from '../searchbars/CompleteSearchBar';
+import SimpleSearchBar from '../searchbars/SimpleSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
-import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
+import SimpleResultsViewer from '../results_viewers/SimpleResultsViewer';
+import { simulateAsyncRequest } from '../../utils/UtilsFunctions';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -22,15 +23,6 @@ const ResultDisplayContainer = styled.div`
   padding: 10px;
   margin: 20px;
 `;
-
-/* FUNCTIONS */
-function simulateAsyncRequest(): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('Response from server');
-    }, 300);
-  });
-}
 
 interface IProps {
   searchInvitationMessage: string;
@@ -92,7 +84,7 @@ function SimpleSearchComponent({
       case PageState.Loading:
         return <SearchLoading />;
       case PageState.Loaded:
-        return <CompleteResultsViewer results={searchResult} />;
+        return <SimpleResultsViewer results={searchResult} />;
       default:
         return <div>Unknown application state</div>;
     }

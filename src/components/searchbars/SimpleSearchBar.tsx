@@ -15,6 +15,14 @@ const StyledInputGroup = styled(InputGroup)`
   min-width: 300px;
   flex: 1;
   overflow: hidden;
+
+  &.searchInput {
+    flex: 3;
+  }
+
+  &.submitInput {
+    flex: 1;
+  }
 `;
 
 const SearchBarWrapper = styled.div`
@@ -38,7 +46,7 @@ function SimpleSearchBar({ onSearch }: IProps) {
         recherche:
       </IntroductionText>
       <InputsWrapper as={RouterForm} id="search-form" role="search">
-        <StyledInputGroup>
+        <StyledInputGroup className="searchInput">
           <InputGroup.Text id="keywords-text">Mots clés</InputGroup.Text>
           <Form.Control
             id="keywords-input"
@@ -50,7 +58,7 @@ function SimpleSearchBar({ onSearch }: IProps) {
             // onChange={(e) => setSearchParams({ keywords: e.target.value })}
           />
         </StyledInputGroup>
-        <StyledInputGroup>
+        <StyledInputGroup className="submitInput">
           <Button variant="secondary" type="submit" onClick={onSearch}>
             Rechercher dans
           </Button>

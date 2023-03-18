@@ -6,6 +6,7 @@ import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
+import { simulateAsyncRequest } from '../../utils/UtilsFunctions';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -22,15 +23,6 @@ const ResultDisplayContainer = styled.div`
   padding: 10px;
   margin: 20px;
 `;
-
-/* FUNCTIONS */
-function simulateAsyncRequest(): Promise<string> {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve('Response from server');
-    }, 300);
-  });
-}
 
 interface IProps {
   searchInvitationMessage: string;

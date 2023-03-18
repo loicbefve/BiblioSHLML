@@ -2,34 +2,13 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { ResearchResult } from '../../utils/Types';
 import MetadataViewer from '../metadata/MetadataViewer';
-
-function parseHash(hashToParse: string, results: ResearchResult[]) {
-  const maybeDataIndexFromHash = hashToParse.match(/(?<=r)[0-9]/);
-  const maybeImageIndexFromHash = hashToParse.match(/(?<=i)[0-9]/);
-
-  const dataIndexFromHash = maybeDataIndexFromHash
-    ? parseInt(maybeDataIndexFromHash.toString(), 10)
-    : 1;
-  const imageIndexFromHash = maybeImageIndexFromHash
-    ? parseInt(maybeImageIndexFromHash.toString(), 10)
-    : 1;
-
-  const parsedDataIndex =
-    dataIndexFromHash <= results.length ? dataIndexFromHash : 1;
-  const parsedImageIndex =
-    imageIndexFromHash <= results[parsedDataIndex - 1].urls.length
-      ? imageIndexFromHash
-      : 1;
-
-  return { parsedDataIndex, parsedImageIndex };
-}
+import { parseHash } from '../../utils/UtilsFunctions';
 
 interface IProps {
   results: ResearchResult[];
 }
 function SimpleResultsViewer({ results }: IProps) {
   const [currentDataIndex, setCurrentDataIndex] = useState(0);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { hash } = useLocation();
 
   /**
@@ -37,8 +16,8 @@ function SimpleResultsViewer({ results }: IProps) {
    * allowing the user to copy/paste the link and come back to the exact same displayed result.
    */
   useEffect(() => {
-    window.location.hash = `r${currentDataIndex + 1}-i${currentImageIndex + 1}`;
-  }, [currentImageIndex, currentDataIndex]);
+    window.location.hash = `r${currentDataIndex + 1}`;
+  }, [currentDataIndex]);
 
   /**
    * This hook will at first render of the result page set the current data and
@@ -46,9 +25,8 @@ function SimpleResultsViewer({ results }: IProps) {
    */
   useEffect(() => {
     if (hash) {
-      const { parsedDataIndex, parsedImageIndex } = parseHash(hash, results);
+      const { parsedDataIndex } = parseHash(hash, results);
       setCurrentDataIndex(parsedDataIndex - 1);
-      setCurrentImageIndex(parsedImageIndex - 1);
     }
   }, []);
 
@@ -63,7 +41,6 @@ function SimpleResultsViewer({ results }: IProps) {
       results={results}
       currentDataIndex={currentDataIndex}
       setCurrentDataIndex={setCurrentDataIndex}
-      setCurrentImageIndex={setCurrentImageIndex}
     />
   );
 }

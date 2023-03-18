@@ -4,33 +4,13 @@ import styled from 'styled-components';
 import { ResearchResult } from '../../utils/Types';
 import ImageViewer from './ImageViewer';
 import MetadataViewer from '../metadata/MetadataViewer';
+import { parseHash } from '../../utils/UtilsFunctions';
 
 const VerticalSeparator = styled.div`
   border: none;
   border-left: 1px solid lightgrey;
   width: 1px;
 `;
-
-function parseHash(hashToParse: string, results: ResearchResult[]) {
-  const maybeDataIndexFromHash = hashToParse.match(/(?<=r)[0-9]/);
-  const maybeImageIndexFromHash = hashToParse.match(/(?<=i)[0-9]/);
-
-  const dataIndexFromHash = maybeDataIndexFromHash
-    ? parseInt(maybeDataIndexFromHash.toString(), 10)
-    : 1;
-  const imageIndexFromHash = maybeImageIndexFromHash
-    ? parseInt(maybeImageIndexFromHash.toString(), 10)
-    : 1;
-
-  const parsedDataIndex =
-    dataIndexFromHash <= results.length ? dataIndexFromHash : 1;
-  const parsedImageIndex =
-    imageIndexFromHash <= results[parsedDataIndex - 1].urls.length
-      ? imageIndexFromHash
-      : 1;
-
-  return { parsedDataIndex, parsedImageIndex };
-}
 
 interface IProps {
   results: ResearchResult[];
