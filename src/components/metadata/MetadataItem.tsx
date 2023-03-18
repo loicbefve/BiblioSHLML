@@ -22,6 +22,13 @@ const MetadataValue = styled.div`
   text-align: left;
 `;
 
+function cleanMetadataName(metadataName: string): string {
+  const capitalized =
+    metadataName.charAt(0).toUpperCase() + metadataName.slice(1);
+
+  return capitalized.replaceAll('_', ' ');
+}
+
 interface IProps {
   metadataName: string;
   metadataValue: string;
@@ -30,9 +37,7 @@ function MetadataItem({ metadataName, metadataValue }: IProps) {
   return (
     <MetadataWrapper>
       <MetadataContainer>
-        <MetadataName>
-          {metadataName.charAt(0).toUpperCase() + metadataName.slice(1)} :
-        </MetadataName>
+        <MetadataName>{cleanMetadataName(metadataName)} :</MetadataName>
         <MetadataValue>{metadataValue}</MetadataValue>
       </MetadataContainer>
     </MetadataWrapper>
