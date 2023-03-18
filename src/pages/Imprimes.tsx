@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SearchComponent from '../components/SearchComponent';
+import FullSearchComponent from '../components/search_components/FullSearchComponent';
 import { mockImprimes } from '../utils/MockData';
 
 /* STYLED COMPONENTS */
@@ -24,7 +24,7 @@ function Imprimes() {
     <ImprimesWrapper>
       <Title>Recherche dans la liste des Imprimés</Title>
       <hr />
-      <SearchComponent
+      <FullSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiURLToCall={mockImprimes.data}
       />

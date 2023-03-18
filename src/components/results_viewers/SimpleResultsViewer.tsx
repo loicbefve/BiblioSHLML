@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import styled from 'styled-components';
-import { ResearchResult } from '../utils/Types';
-import ImageViewer from './ImageViewer';
-import MetadataViewer from './metadata/MetadataViewer';
-
-const VerticalSeparator = styled.div`
-  border: none;
-  border-left: 1px solid lightgrey;
-  width: 1px;
-`;
+import { ResearchResult } from '../../utils/Types';
+import MetadataViewer from '../metadata/MetadataViewer';
 
 function parseHash(hashToParse: string, results: ResearchResult[]) {
   const maybeDataIndexFromHash = hashToParse.match(/(?<=r)[0-9]/);
@@ -35,7 +27,7 @@ function parseHash(hashToParse: string, results: ResearchResult[]) {
 interface IProps {
   results: ResearchResult[];
 }
-function ResultsViewer({ results }: IProps) {
+function SimpleResultsViewer({ results }: IProps) {
   const [currentDataIndex, setCurrentDataIndex] = useState(0);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const { hash } = useLocation();
@@ -66,24 +58,14 @@ function ResultsViewer({ results }: IProps) {
     );
   }
 
-  const currentResult = results[currentDataIndex];
-
   return (
-    <>
-      <ImageViewer
-        images={currentResult.urls}
-        currentImageIndex={currentImageIndex}
-        setCurrentImageIndex={setCurrentImageIndex}
-      />
-      <VerticalSeparator />
-      <MetadataViewer
-        results={results}
-        currentDataIndex={currentDataIndex}
-        setCurrentDataIndex={setCurrentDataIndex}
-        setCurrentImageIndex={setCurrentImageIndex}
-      />
-    </>
+    <MetadataViewer
+      results={results}
+      currentDataIndex={currentDataIndex}
+      setCurrentDataIndex={setCurrentDataIndex}
+      setCurrentImageIndex={setCurrentImageIndex}
+    />
   );
 }
 
-export default ResultsViewer;
+export default SimpleResultsViewer;

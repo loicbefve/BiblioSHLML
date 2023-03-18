@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState, ResearchResult } from '../utils/Types';
-import ResultsViewer from './ResultsViewer';
-import SearchBar from './SearchBar';
+import { PageState, ResearchResult } from '../../utils/Types';
+import SimpleSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
+import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -42,7 +42,10 @@ interface IProps {
 /**
  * Component
  */
-function SearchComponent({ searchInvitationMessage, apiURLToCall }: IProps) {
+function SimpleSearchComponent({
+  searchInvitationMessage,
+  apiURLToCall,
+}: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
   const [pageState, setPageState] = useState(PageState.NoData);
@@ -89,7 +92,7 @@ function SearchComponent({ searchInvitationMessage, apiURLToCall }: IProps) {
       case PageState.Loading:
         return <SearchLoading />;
       case PageState.Loaded:
-        return <ResultsViewer results={searchResult} />;
+        return <CompleteResultsViewer results={searchResult} />;
       default:
         return <div>Unknown application state</div>;
     }
@@ -98,10 +101,10 @@ function SearchComponent({ searchInvitationMessage, apiURLToCall }: IProps) {
   /* TSX */
   return (
     <SearchComponentWrapper>
-      <SearchBar onSearch={handleSearch} />
+      <SimpleSearchBar onSearch={handleSearch} />
       <ResultDisplayContainer>{renderResults()}</ResultDisplayContainer>
     </SearchComponentWrapper>
   );
 }
 
-export default SearchComponent;
+export default SimpleSearchComponent;

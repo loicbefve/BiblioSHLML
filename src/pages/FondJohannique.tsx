@@ -1,6 +1,6 @@
 /* STYLED COMPONENTS */
 import styled from 'styled-components';
-import SearchComponent from '../components/SearchComponent';
+import FullSearchComponent from '../components/search_components/FullSearchComponent';
 import { mockFondDocumentaire } from '../utils/MockData';
 
 const Title = styled.h3`
@@ -22,7 +22,7 @@ function FondJohannique() {
     <FondJohanniqueWrapper>
       <Title>Recherche dans la liste des FondJohannique</Title>
       <hr />
-      <SearchComponent
+      <FullSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiURLToCall={mockFondDocumentaire.data}
       />

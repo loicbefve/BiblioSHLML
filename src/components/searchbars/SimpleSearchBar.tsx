@@ -30,7 +30,7 @@ interface IProps {
   onSearch: () => void;
 }
 
-function SearchBar({ onSearch }: IProps) {
+function SimpleSearchBar({ onSearch }: IProps) {
   return (
     <SearchBarWrapper>
       <IntroductionText>
@@ -38,30 +38,6 @@ function SearchBar({ onSearch }: IProps) {
         recherche:
       </IntroductionText>
       <InputsWrapper as={RouterForm} id="search-form" role="search">
-        <StyledInputGroup>
-          <InputGroup.Text id="title-text">Titre</InputGroup.Text>
-          <Form.Control
-            id="title-input"
-            aria-describedby="title-input"
-            aria-label="title-input"
-            type="Search"
-            name="title"
-            // value={title || ''}
-            // onChange={(e) => setSearchParams({ title: e.target.value })}
-          />
-        </StyledInputGroup>
-        <StyledInputGroup>
-          <InputGroup.Text id="author-text">Auteur</InputGroup.Text>
-          <Form.Control
-            id="author-input"
-            aria-describedby="author-input"
-            aria-label="author-input"
-            type="Search"
-            name="author"
-            // value={author || ''}
-            // onChange={(e) => setSearchParams({ author: e.target.value })}
-          />
-        </StyledInputGroup>
         <StyledInputGroup>
           <InputGroup.Text id="keywords-text">Mots clés</InputGroup.Text>
           <Form.Control
@@ -90,4 +66,4 @@ function SearchBar({ onSearch }: IProps) {
   );
 }
 
-export default SearchBar;
+export default SimpleSearchBar;
