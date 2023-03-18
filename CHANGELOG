@@ -15,7 +15,6 @@
 
 
 ## À faire :
-- Sur la recherche fond documentaire: MetadataName trop long
 - Quand je change de résultat, je dois revenir à l'image n°1 du résultat suivant.
 - Adapter le SearchComponent pour être utiliser pour les pages spéciales 'Manuscrits' et 'Index du Pays-Lorrain'
 - Styliser le Footer
