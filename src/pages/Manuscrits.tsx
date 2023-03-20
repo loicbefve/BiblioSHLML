@@ -1,7 +1,7 @@
 /* STYLED COMPONENTS */
 import styled from 'styled-components';
 import SimpleSearchComponent from '../components/search_components/SimpleSearchComponent';
-import { mockFondDocumentaire } from '../utils/MockData';
+import { mockManuscrits } from '../utils/MockData';
 
 const Title = styled.h3`
   text-align: center;
@@ -24,7 +24,7 @@ function Manuscrits() {
       <hr />
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall={mockFondDocumentaire.data}
+        apiURLToCall={mockManuscrits.data}
       />
     </ManuscritsWrapper>
   );

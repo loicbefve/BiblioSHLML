@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState, ResearchResult } from '../../utils/Types';
+import { PageState, SimpleResearchResult } from '../../utils/Types';
 import SimpleSearchBar from '../searchbars/SimpleSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
@@ -28,7 +28,7 @@ interface IProps {
   searchInvitationMessage: string;
 
   // TODO: Later make it the real API URI
-  apiURLToCall: ResearchResult[];
+  apiURLToCall: SimpleResearchResult[];
 }
 
 /**
@@ -39,7 +39,7 @@ function SimpleSearchComponent({
   apiURLToCall,
 }: IProps) {
   /* STATES */
-  const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
+  const [searchResult, setSearchResult] = useState<SimpleResearchResult[]>([]);
   const [pageState, setPageState] = useState(PageState.NoData);
   const [searchParams] = useSearchParams();
 

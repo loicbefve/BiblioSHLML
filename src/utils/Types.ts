@@ -82,7 +82,6 @@ export interface FondsJohanniquesResearchResult extends ResearchResult {
 
 export interface SimpleResearchResult {
   metadatas: {
-    id: string;
     commentaires: string;
   };
 }
