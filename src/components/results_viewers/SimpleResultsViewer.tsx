@@ -4,21 +4,24 @@ import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
 import styled from 'styled-components';
 import { SimpleResearchResult } from '../../utils/Types';
 import { parseSimpleHash } from '../../utils/UtilsFunctions';
-import MetadataItem from '../metadata/MetadataItem';
 
-const MetadataViewerWrapper = styled.div`
+const ResultViewerWrapper = styled.div`
   flex: 1;
+  display: flex;
+  flex-direction: column;
+`;
+
+const ResultWrapper = styled.div`
+  padding: 20px 100px;
+  margin: 20px;
+  background-color: white;
+  flex: 1;
+  border-radius: 5px;
+`;
+
+const NavigationWrapper = styled.div`
   text-align: center;
 `;
-
-const MetadatasWrapper = styled.div`
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 50% 50%;
-  padding: 20px;
-`;
-
-const NavigationWrapper = styled.div``;
 
 interface IProps {
   results: SimpleResearchResult[];
@@ -29,7 +32,6 @@ function SimpleResultsViewer({ results }: IProps) {
 
   const numberOfResults = results.length;
   const currentResult = results[currentDataIndex];
-  const metadatas = Object.entries(currentResult.metadatas);
 
   /**
    * This hook will write in the URL the currently navigated result
@@ -65,7 +67,7 @@ function SimpleResultsViewer({ results }: IProps) {
   }
 
   return (
-    <MetadataViewerWrapper>
+    <ResultViewerWrapper>
       <NavigationWrapper>
         <ButtonGroup role="group" aria-label="Image navigation">
           <Button
@@ -74,7 +76,7 @@ function SimpleResultsViewer({ results }: IProps) {
             active={currentDataIndex > 0}
             onClick={handlePreviousClick}
           >
-            Image précédente
+            Résultat précédent
           </Button>
           <Button
             variant="secondary"
@@ -82,23 +84,19 @@ function SimpleResultsViewer({ results }: IProps) {
             active={currentDataIndex + 1 < numberOfResults}
             onClick={handleNextClick}
           >
-            Image suivante{' '}
+            Résultat suivant{' '}
           </Button>
           <InputGroup.Text id="title-text">
             Resultat {currentDataIndex + 1} de {numberOfResults}
           </InputGroup.Text>
         </ButtonGroup>
       </NavigationWrapper>
-      <MetadatasWrapper>
-        {metadatas.map(([key, value]) => (
-          <MetadataItem
-            key={`${key}-${value}`}
-            metadataName={key}
-            metadataValue={value}
-          />
+      <ResultWrapper>
+        {currentResult.metadatas.commentaires.split('\n').map((el) => (
+          <p key={el}>{el}</p>
         ))}
-      </MetadatasWrapper>
-    </MetadataViewerWrapper>
+      </ResultWrapper>
+    </ResultViewerWrapper>
   );
 }
 
