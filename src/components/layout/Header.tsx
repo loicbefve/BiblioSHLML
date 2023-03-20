@@ -71,13 +71,16 @@ function Header() {
             </Nav.Link>
           </StyledNavItem>
           <StyledNavItem>
-            <Nav.Link as={NavLink} to="/contact">
+            <Nav.Link
+              as={NavLink}
+              to="http://www.societe-histoire-lorraine.com/contact"
+            >
               Contact
             </Nav.Link>
           </StyledNavItem>
         </StyleNav>
         <StyleNav>
-          <Nav.Link as={NavLink} to="/contact">
+          <Nav.Link as={NavLink} to="http://www.societe-histoire-lorraine.com">
             Société d&apos;Histoire de la Lorraine et du Musée Lorrain
           </Nav.Link>
         </StyleNav>
