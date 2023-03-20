@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import CompleteSearchComponent from '../components/search_components/CompleteSearchComponent';
-import { mockImprimes } from '../utils/MockData';
+import { mockManuscrits } from '../utils/MockData';
+import SimpleSearchComponent from '../components/search_components/SimpleSearchComponent';
 
 /* STYLED COMPONENTS */
 const Title = styled.h3`
@@ -24,9 +24,9 @@ function IndexPaysLorrain() {
     <ImprimesWrapper>
       <Title>Recherche dans l&apos;Index du Pays Lorrain</Title>
       <hr />
-      <CompleteSearchComponent
+      <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall={mockImprimes.data}
+        apiURLToCall={mockManuscrits.data}
       />
     </ImprimesWrapper>
   );
