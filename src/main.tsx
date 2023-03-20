@@ -15,7 +15,6 @@ import FondJohannique from './pages/FondJohannique';
 import FondDocumentaire from './pages/FondDocumentaire';
 import Manuscrits from './pages/Manuscrits';
 import IndexPaysLorrain from './pages/IndexPaysLorrain';
-import Contact from './pages/Contact';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Imprimes from './pages/Imprimes';
 
@@ -29,7 +28,6 @@ const router = createBrowserRouter(
       <Route path="/fonds_documentaire" element={<FondDocumentaire />} />
       <Route path="/manuscrits" element={<Manuscrits />} />
       <Route path="/index_pays_lorrain" element={<IndexPaysLorrain />} />
-      <Route path="/contact" element={<Contact />} />
     </Route>
   )
 );
