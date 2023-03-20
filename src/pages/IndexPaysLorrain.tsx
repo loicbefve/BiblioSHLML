@@ -15,14 +15,14 @@ const ImprimesWrapper = styled.div`
 `;
 
 const searchInvitationMessage =
-  "Effectuez votre recherche dans l'Index du Pays Lorrain de la société en utilisant le" +
+  "Effectuez votre recherche dans l'Index du Pays Lorrain en utilisant le" +
   ' formulaire ci-dessus';
 
 /* COMPONENT */
 function IndexPaysLorrain() {
   return (
     <ImprimesWrapper>
-      <Title>Recherche dans la liste des Imprimés</Title>
+      <Title>Recherche dans l&apos;Index du Pays Lorrain</Title>
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
