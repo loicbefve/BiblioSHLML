@@ -20,13 +20,14 @@ const searchInvitationMessage =
 
 /* COMPONENT */
 function Imprimes() {
+  // FIXME : Replace hardcoded URL with configuration call
   return (
     <ImprimesWrapper>
       <Title>Recherche dans la liste des Imprimés</Title>
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall={mockImprimes.data}
+        apiURLToCall="http://127.0.0.1:3000/searchImprimes"
       />
     </ImprimesWrapper>
   );

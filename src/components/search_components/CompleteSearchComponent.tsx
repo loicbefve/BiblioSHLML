@@ -6,7 +6,6 @@ import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
-import { simulateAsyncRequest } from '../../utils/UtilsFunctions';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -28,7 +27,7 @@ interface IProps {
   searchInvitationMessage: string;
 
   // TODO: Later make it the real API URI
-  apiURLToCall: ResearchResult[];
+  apiURLToCall: string;
 }
 
 /**
@@ -49,12 +48,23 @@ function CompleteSearchComponent({
    */
   const handleSearch = useCallback(async () => {
     setPageState(PageState.Loading);
-    // TODO : Real backend call
-    await simulateAsyncRequest();
-    setSearchResult(apiURLToCall);
-    clearInterval(undefined);
+    const title = searchParams.get('title') || '';
+    const author = searchParams.get('author') || '';
+    const keywords = searchParams.get('keywords') || '';
+
+    const res = await fetch(
+      `${apiURLToCall}?title=${title}&author=${author}&keywords=${keywords}`
+    );
+
+    if (!res.ok) {
+      // TODO: May be better to handle the error at the component level for better UX
+      throw new Error(`HTTP error: ${res.status}`);
+    }
+
+    const jsonResponse = await res.json();
+    setSearchResult(jsonResponse);
     setPageState(PageState.Loaded);
-  }, [apiURLToCall]);
+  }, [apiURLToCall, searchParams]);
 
   const firstLoadFromURL = useCallback(async () => {
     const title = searchParams.get('title');
