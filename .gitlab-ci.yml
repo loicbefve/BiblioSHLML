@@ -40,8 +40,11 @@ build:
 
 
 
-deploy:
+deploy_dev:
   stage: deploy
   script:
     # Deploy to remote server
     - rsync -rvog --delete --chmod=774 --chown=$DEPLOY_USER:$DEPLOY_GROUP  dist/ $DEPLOY_USER@$SERVER_IP:$DEPLOY_PATH
+  environment:
+    name: development
+    url: http://bibliodev.societe-histoire-lorraine.com
