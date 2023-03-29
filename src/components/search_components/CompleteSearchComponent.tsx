@@ -27,7 +27,7 @@ interface IProps {
   searchInvitationMessage: string;
 
   // TODO: Later make it the real API URI
-  apiURLToCall: string;
+  apiEndpoint: string;
 }
 
 /**
@@ -35,7 +35,7 @@ interface IProps {
  */
 function CompleteSearchComponent({
   searchInvitationMessage,
-  apiURLToCall,
+  apiEndpoint,
 }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
@@ -52,9 +52,11 @@ function CompleteSearchComponent({
     const author = searchParams.get('author') || '';
     const keywords = searchParams.get('keywords') || '';
 
-    const res = await fetch(
-      `${apiURLToCall}?title=${title}&author=${author}&keywords=${keywords}`
-    );
+    const apiURI = `${
+      import.meta.env.VITE_API_URL
+    }/${apiEndpoint}?title=${title}&author=${author}&keywords=${keywords}`;
+
+    const res = await fetch(apiURI);
 
     if (!res.ok) {
       // TODO: May be better to handle the error at the component level for better UX
@@ -64,7 +66,7 @@ function CompleteSearchComponent({
     const jsonResponse = await res.json();
     setSearchResult(jsonResponse);
     setPageState(PageState.Loaded);
-  }, [apiURLToCall, searchParams]);
+  }, [apiEndpoint, searchParams]);
 
   const firstLoadFromURL = useCallback(async () => {
     const title = searchParams.get('title');

@@ -24,7 +24,7 @@ function Factums() {
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall={mockFactums.data}
+        apiEndpoint={mockFactums.data}
       />
     </FactumsWrapper>
   );

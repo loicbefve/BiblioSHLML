@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import CompleteSearchComponent from '../components/search_components/CompleteSearchComponent';
-import { mockImprimes } from '../utils/MockData';
 
 /* STYLED COMPONENTS */
 const Title = styled.h3`
@@ -27,7 +26,7 @@ function Imprimes() {
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall="http://127.0.0.1:3000/searchImprimes"
+        apiEndpoint="searchImprimes"
       />
     </ImprimesWrapper>
   );
