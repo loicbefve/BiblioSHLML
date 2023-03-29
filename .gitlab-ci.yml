@@ -7,6 +7,7 @@ stages:
 install:
   stage: install
   script:
+    - npm install yarn
     - yarn install --frozen-lockfile
 
 test:
