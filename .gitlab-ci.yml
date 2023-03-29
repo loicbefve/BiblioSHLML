@@ -4,6 +4,13 @@ stages:
   - build
   - deploy
 
+cache:
+  key:
+    files:
+    - yarn.lock
+  paths:
+  - node_modules/
+
 install:
   stage: install
   script:
