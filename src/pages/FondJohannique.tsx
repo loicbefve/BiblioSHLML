@@ -24,7 +24,7 @@ function FondJohannique() {
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiEndpoint={mockFondDocumentaire.data}
+        apiEndpoint="searchFondsJohannique"
       />
     </FondJohanniqueWrapper>
   );

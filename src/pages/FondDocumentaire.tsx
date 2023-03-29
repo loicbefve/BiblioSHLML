@@ -24,7 +24,7 @@ function FondDocumentaire() {
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiEndpoint={mockFondDocumentaire.data}
+        apiEndpoint="searchFondsDocumentaire"
       />
     </FondDocumentaireWrapper>
   );
