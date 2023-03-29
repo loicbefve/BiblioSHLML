@@ -4,27 +4,16 @@ stages:
   - build
   - deploy
 
-cache:
-  key:
-    files:
-    - yarn.lock
-  paths:
-  - node_modules/
-
 install:
   stage: install
   script:
     - yarn install --frozen-lockfile
-
-
 
 test:
   stage: test
   script:
     # Run ESLint
     - yarn run lint
-
-
 
 build:
   stage: build
@@ -37,7 +26,6 @@ build:
     expire_in: 30 days
     paths:
       - dist/
-
 
 
 deploy_dev:
