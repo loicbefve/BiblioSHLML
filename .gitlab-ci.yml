@@ -40,7 +40,7 @@ build:
 
 
 
-deploy:
+deploy_dev:
   stage: deploy
   script:
     # Deploy to remote server
