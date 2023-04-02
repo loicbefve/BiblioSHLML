@@ -32,6 +32,7 @@ const Main = styled.div`
 function Layout() {
   return (
     <LayoutWrapper>
+      {import.meta.env.VITE_API_URL}
       <Header />
       <Main>
         <Outlet />
