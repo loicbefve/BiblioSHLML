@@ -27,7 +27,7 @@ build:
   stage: build
   script:
     - yarn run tsc 
-    - yarn run vite build
+    - VITE_API_URL=$DEV_API_URL yarn run vite build
   artifacts:
     untracked: false
     when: on_success
