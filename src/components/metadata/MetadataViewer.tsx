@@ -18,8 +18,16 @@ const MetadatasWrapper = styled.div`
 
 const NavigationWrapper = styled.div``;
 
-const Title = styled.h2`
-  margin-top: 1rem;
+const TitleContainer = styled.h3`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  border: solid 1px grey;
+  background-color: white;
+  border-radius: 10px;
+  margin: 1rem;
+  min-height: 100px;
 `;
 
 interface IProps {
@@ -73,15 +81,20 @@ function MetadataViewer({
           </InputGroup.Text>
         </ButtonGroup>
       </NavigationWrapper>
-      <Title>{currentResult.metadatas.titre}</Title>
+      <TitleContainer>
+        <div>{currentResult.metadatas.titre}</div>
+      </TitleContainer>
       <MetadatasWrapper>
-        {metadatas.map(([key, value]) => (
-          <MetadataItem
-            key={`${key}-${value}`}
-            metadataName={key}
-            metadataValue={value}
-          />
-        ))}
+        {metadatas.map(
+          ([key, value]) =>
+            key === 'titre' || (
+              <MetadataItem
+                key={`${key}-${value}`}
+                metadataName={key}
+                metadataValue={value}
+              />
+            )
+        )}
       </MetadatasWrapper>
     </MetadataViewerWrapper>
   );
