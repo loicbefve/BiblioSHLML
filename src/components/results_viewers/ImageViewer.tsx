@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
-import { Dispatch, SetStateAction } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+import { PageState } from '../../utils/Types';
 
 const ImageViewerWrapper = styled.div`
   flex: 1;
@@ -33,13 +40,38 @@ function ImageViewer({
 }: IProps) {
   const numberOfImages = images.length;
   const currentSource = images[currentImageIndex];
-  const handlePreviousClick = () => {
-    setCurrentImageIndex(currentImageIndex - 1);
-  };
+  const [img, setImg] = useState('');
 
-  const handleNextClick = () => {
+  const handlePreviousClick = useCallback(() => {
+    setCurrentImageIndex(currentImageIndex - 1);
+  }, [currentImageIndex, setCurrentImageIndex]);
+
+  const handleNextClick = useCallback(() => {
     setCurrentImageIndex(currentImageIndex + 1);
-  };
+  }, [currentImageIndex, setCurrentImageIndex]);
+
+  const handleSearch = useCallback(async () => {
+    // setPageState(PageState.Loading);
+
+    const apiURI = `${import.meta.env.VITE_API_URL}/fiches/${currentSource}`;
+
+    const res = await fetch(apiURI);
+
+    if (!res.ok) {
+      // TODO: May be better to handle the error at the component level for better UX
+      throw new Error(`HTTP error: ${res.status}`);
+    }
+
+    const imageBlob = await res.blob();
+    const imageObjectURL = URL.createObjectURL(imageBlob);
+    setImg(imageObjectURL);
+
+    // setPageState(PageState.Loaded);
+  }, [currentSource]);
+
+  useEffect(() => {
+    handleSearch();
+  }, [currentSource]);
 
   return (
     <ImageViewerWrapper>
@@ -70,7 +102,7 @@ function ImageViewer({
       </ResultNavigationWrapper>
       <ImageContainer>
         <ResultImg
-          src={currentSource}
+          src={img}
           alt="Result of the research"
           crossOrigin="anonymous"
         />
