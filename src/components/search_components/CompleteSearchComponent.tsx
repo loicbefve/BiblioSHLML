@@ -54,7 +54,11 @@ function CompleteSearchComponent({
 
       const apiURI = `${
         import.meta.env.VITE_API_URL
-      }/${apiEndpoint}?title=${title}&author=${author}&keywords=${keywords}`;
+      }/${apiEndpoint}?title=${encodeURIComponent(
+        title
+      )}&author=${encodeURIComponent(author)}&keywords=${encodeURIComponent(
+        keywords
+      )}`;
 
       const res = await fetch(apiURI);
 
