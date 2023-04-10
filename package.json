@@ -10,16 +10,18 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx}"
   },
   "dependencies": {
-    "@fortawesome/react-fontawesome": "^0.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "boostrap": "^2.0.0",
     "bootstrap": "^5.2.3",
     "eslint-config-node": "^4.1.0",
     "eslint-plugin-node": "^11.1.0",
+    "i18next": "^22.4.14",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.2.0",
     "react-router-dom": "^6.8.1",
     "styled-components": "^5.3.6"
   },
