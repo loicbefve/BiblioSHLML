@@ -90,4 +90,17 @@ export enum PageState {
   NoData = 'nodata',
   Loading = 'loading',
   Loaded = 'loaded',
+  Error = 'error',
 }
+
+export interface ApiSuccessResponse {
+  success: true;
+  data: ResearchResult[];
+}
+
+export interface ApiErrorResponse {
+  success: false;
+  error: string;
+}
+
+export type ApiResponse = ApiSuccessResponse | ApiErrorResponse;

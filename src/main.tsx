@@ -22,7 +22,7 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<Home />} />
-      <Route path="imprimes" element={<Imprimes />} />
+      <Route path="imprimes" element={<Imprimes />} errorElement={<Error />} />
       <Route path="/factums" element={<Factums />} />
       <Route path="/fonds_johannique" element={<FondJohannique />} />
       <Route path="/fonds_documentaire" element={<FondDocumentaire />} />

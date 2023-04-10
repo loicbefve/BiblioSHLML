@@ -6,6 +6,8 @@ import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
+import SearchError from './SearchError';
+import { fetchData } from '../../utils/UtilsFunctions';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -39,6 +41,7 @@ function CompleteSearchComponent({
   /* STATES */
   const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
   const [pageState, setPageState] = useState(PageState.NoData);
+  const [error, setError] = useState<string | null>(null);
   const [titleState, setTitleState] = useState('');
   const [authorState, setAuthorState] = useState('');
   const [keywordsState, setKeywordsState] = useState('');
@@ -60,16 +63,15 @@ function CompleteSearchComponent({
         keywords
       )}`;
 
-      const res = await fetch(apiURI);
+      const response = await fetchData(apiURI);
 
-      if (!res.ok) {
-        // TODO: May be better to handle the error at the component level for better UX
-        throw new Error(`HTTP error: ${res.status}`);
+      if (response.success) {
+        setSearchResult(response.data);
+        setPageState(PageState.Loaded);
+      } else {
+        setError(response.error);
+        setPageState(PageState.Error);
       }
-
-      const jsonResponse = await res.json();
-      setSearchResult(jsonResponse);
-      setPageState(PageState.Loaded);
     },
     [apiEndpoint]
   );
@@ -105,6 +107,8 @@ function CompleteSearchComponent({
         );
       case PageState.Loading:
         return <SearchLoading />;
+      case PageState.Error:
+        return <SearchError error={error || ''} />;
       case PageState.Loaded:
         return <CompleteResultsViewer results={searchResult} />;
       default:

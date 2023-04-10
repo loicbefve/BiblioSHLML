@@ -1,4 +1,4 @@
-import { ResearchResult, SimpleResearchResult } from './Types';
+import { ApiResponse, ResearchResult, SimpleResearchResult } from './Types';
 
 /**
  * This fuunction helps simulate an async request to the server
@@ -67,4 +67,29 @@ export function parseSimpleHash(
     dataIndexFromHash <= results.length ? dataIndexFromHash : 1;
 
   return { parsedDataIndex };
+}
+
+export async function fetchData(uri: string): Promise<ApiResponse> {
+  try {
+    const response = await fetch(uri);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      return {
+        success: false,
+        error: `HTTP erreur ${response.status}: ${errorText}`,
+      };
+    }
+
+    const data: ResearchResult[] = await response.json();
+    return {
+      success: true,
+      data,
+    };
+  } catch (e: any) {
+    return {
+      success: false,
+      error: e.message,
+    };
+  }
 }
