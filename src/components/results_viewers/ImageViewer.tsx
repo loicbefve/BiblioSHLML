@@ -8,6 +8,7 @@ import {
   useState,
 } from 'react';
 import { PageState } from '../../utils/Types';
+import default_fiche from '../../../public/default_fiche.png';
 
 const ImageViewerWrapper = styled.div`
   flex: 1;
@@ -41,6 +42,7 @@ function ImageViewer({
   const numberOfImages = images.length;
   const currentSource = images[currentImageIndex];
   const [img, setImg] = useState('');
+  const [pageState, setPageState] = useState(PageState.NoData);
 
   const handlePreviousClick = useCallback(() => {
     setCurrentImageIndex(currentImageIndex - 1);
@@ -51,15 +53,15 @@ function ImageViewer({
   }, [currentImageIndex, setCurrentImageIndex]);
 
   const handleSearch = useCallback(async () => {
-    // setPageState(PageState.Loading);
+    setPageState(PageState.Loading);
 
     const apiURI = `${import.meta.env.VITE_API_URL}/fiches/${currentSource}`;
 
     const res = await fetch(apiURI);
 
     if (!res.ok) {
-      // TODO: May be better to handle the error at the component level for better UX
-      throw new Error(`HTTP error: ${res.status}`);
+      setImg(default_fiche);
+      // TODO : Handle error
     }
 
     const imageBlob = await res.blob();
@@ -70,7 +72,11 @@ function ImageViewer({
   }, [currentSource]);
 
   useEffect(() => {
-    handleSearch();
+    if (currentSource) {
+      handleSearch();
+    } else {
+      setImg(default_fiche);
+    }
   }, [currentSource]);
 
   return (
