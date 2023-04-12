@@ -65,7 +65,7 @@ function SimpleSearchBar({ onSearch, keywords, setKeywords }: IProps) {
           <Button
             variant="secondary"
             type="submit"
-            onClick={(e) => onSearch(keywords)}
+            onClick={() => onSearch(keywords)}
           >
             Rechercher dans
           </Button>
