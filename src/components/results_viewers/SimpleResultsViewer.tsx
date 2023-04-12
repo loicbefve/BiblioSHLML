@@ -12,11 +12,12 @@ const ResultViewerWrapper = styled.div`
 `;
 
 const ResultWrapper = styled.div`
-  padding: 20px 100px;
   margin: 20px;
   background-color: white;
   flex: 1;
   border-radius: 5px;
+  text-align: center;
+  padding: 150px;
 `;
 
 const NavigationWrapper = styled.div`
