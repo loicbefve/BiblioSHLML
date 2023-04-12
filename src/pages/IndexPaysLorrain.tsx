@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { mockManuscrits } from '../utils/MockData';
 import SimpleSearchComponent from '../components/search_components/SimpleSearchComponent';
 
 /* STYLED COMPONENTS */

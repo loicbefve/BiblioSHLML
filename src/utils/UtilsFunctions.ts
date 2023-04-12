@@ -1,4 +1,4 @@
-import { ApiResponse, ResearchResult, SimpleResearchResult } from './Types';
+import { ResearchResult, SimpleResearchResult } from './Types';
 
 /**
  * This fuunction helps simulate an async request to the server
