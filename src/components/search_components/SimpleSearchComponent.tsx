@@ -1,12 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState, SimpleResearchResult } from '../../utils/Types';
+import {
+  PageState,
+  ResearchResult,
+  SimpleResearchResult,
+} from '../../utils/Types';
 import SimpleSearchBar from '../searchbars/SimpleSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
 import SimpleResultsViewer from '../results_viewers/SimpleResultsViewer';
 import { simulateAsyncRequest } from '../../utils/UtilsFunctions';
+import SearchError from './SearchError';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -28,7 +33,7 @@ interface IProps {
   searchInvitationMessage: string;
 
   // TODO: Later make it the real API URI
-  apiURLToCall: SimpleResearchResult[];
+  apiEndpoint: string;
 }
 
 /**
@@ -36,36 +41,59 @@ interface IProps {
  */
 function SimpleSearchComponent({
   searchInvitationMessage,
-  apiURLToCall,
+  apiEndpoint,
 }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<SimpleResearchResult[]>([]);
   const [pageState, setPageState] = useState(PageState.NoData);
+  const [error, setError] = useState('');
+  const [keywordsState, setKeywordsState] = useState('');
   const [searchParams] = useSearchParams();
 
   /**
    * This function will handle a research by calling the API endpoint used to
    * the research.
    */
-  const handleSearch = useCallback(async () => {
-    setPageState(PageState.Loading);
-    // TODO : Real backend call
-    await simulateAsyncRequest();
-    setSearchResult(apiURLToCall);
-    clearInterval(undefined);
-    setPageState(PageState.Loaded);
-  }, [apiURLToCall]);
+  const handleSearch = useCallback(
+    async (keywords: string) => {
+      setPageState(PageState.Loading);
+
+      const apiURI = `${
+        import.meta.env.VITE_API_URL
+      }/${apiEndpoint}?keywords=${encodeURIComponent(keywords)}`;
+
+      try {
+        const response = await fetch(apiURI);
+
+        if (!response.ok) {
+          const errorText = `Http error ${response.status} : ${response.statusText}`;
+          setError(errorText);
+          setPageState(PageState.Error);
+          return response;
+        }
+
+        const data: SimpleResearchResult[] = await response.json();
+        setSearchResult(data);
+        setPageState(PageState.Loaded);
+        return response;
+      } catch (e: any) {
+        setError(e.message);
+        setPageState(PageState.Error);
+        return new Response(null);
+      }
+    },
+    [apiEndpoint]
+  );
 
   const firstLoadFromURL = useCallback(async () => {
-    const title = searchParams.get('title');
-    const author = searchParams.get('author');
-    const keywords = searchParams.get('keywords');
+    const keywords = searchParams.get('keywords') || '';
 
-    if (title || author || keywords) {
-      handleSearch();
+    setKeywordsState(keywords);
+
+    if (keywords) {
+      handleSearch(keywords);
     }
   }, [handleSearch, searchParams]);
-
   /* HOOKS */
   /**
    * This hook will launch a search at the first component render if the URL
@@ -83,6 +111,8 @@ function SimpleSearchComponent({
         );
       case PageState.Loading:
         return <SearchLoading />;
+      case PageState.Error:
+        return <SearchError error={error} />;
       case PageState.Loaded:
         return <SimpleResultsViewer results={searchResult} />;
       default:
@@ -93,7 +123,11 @@ function SimpleSearchComponent({
   /* TSX */
   return (
     <SearchComponentWrapper>
-      <SimpleSearchBar onSearch={handleSearch} />
+      <SimpleSearchBar
+        onSearch={handleSearch}
+        keywords={keywordsState}
+        setKeywords={setKeywordsState}
+      />
       <ResultDisplayContainer>{renderResults()}</ResultDisplayContainer>
     </SearchComponentWrapper>
   );

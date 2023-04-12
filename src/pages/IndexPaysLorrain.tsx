@@ -26,7 +26,7 @@ function IndexPaysLorrain() {
       <hr />
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall={mockManuscrits.data}
+        apiEndpoint="searchIndexPaysLorrain"
       />
     </ImprimesWrapper>
   );

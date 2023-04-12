@@ -7,7 +7,6 @@ import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
 import SearchError from './SearchError';
-import { fetchData } from '../../utils/UtilsFunctions';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -63,13 +62,20 @@ function CompleteSearchComponent({
         keywords
       )}`;
 
-      const response = await fetchData(apiURI);
+      try {
+        const response = await fetch(apiURI);
 
-      if (response.success) {
-        setSearchResult(response.data);
+        if (!response.ok) {
+          const errorText = await response.text();
+          setError(errorText);
+          setPageState(PageState.Error);
+        }
+
+        const data: ResearchResult[] = await response.json();
+        setSearchResult(data);
         setPageState(PageState.Loaded);
-      } else {
-        setError(response.error);
+      } catch (e: any) {
+        setError(e.message);
         setPageState(PageState.Error);
       }
     },

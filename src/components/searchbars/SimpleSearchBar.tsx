@@ -1,6 +1,7 @@
 import { InputGroup, Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Form as RouterForm } from 'react-router-dom';
+import { Dispatch, SetStateAction } from 'react';
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -35,10 +36,12 @@ const IntroductionText = styled.div`
 `;
 
 interface IProps {
-  onSearch: () => void;
+  onSearch: (keywords: string) => void;
+  keywords: string;
+  setKeywords: Dispatch<SetStateAction<string>>;
 }
 
-function SimpleSearchBar({ onSearch }: IProps) {
+function SimpleSearchBar({ onSearch, keywords, setKeywords }: IProps) {
   return (
     <SearchBarWrapper>
       <IntroductionText>
@@ -54,12 +57,16 @@ function SimpleSearchBar({ onSearch }: IProps) {
             aria-label="keywords-input"
             type="Search"
             name="keywords"
-            // value={keywords || ''}
-            // onChange={(e) => setSearchParams({ keywords: e.target.value })}
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
           />
         </StyledInputGroup>
         <StyledInputGroup className="submitInput">
-          <Button variant="secondary" type="submit" onClick={onSearch}>
+          <Button
+            variant="secondary"
+            type="submit"
+            onClick={(e) => onSearch(keywords)}
+          >
             Rechercher dans
           </Button>
           <Form.Control

@@ -24,7 +24,7 @@ function Manuscrits() {
       <hr />
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiURLToCall={mockManuscrits.data}
+        apiEndpoint="searchManuscrits"
       />
     </ManuscritsWrapper>
   );
