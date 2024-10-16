@@ -1,7 +1,7 @@
 import { ResearchResult, SimpleResearchResult } from './Types';
 
 /**
- * This fuunction helps simulate an async request to the server
+ * This function helps simulate an async request to the server
  */
 export function simulateAsyncRequest(): Promise<string> {
   return new Promise((resolve) => {

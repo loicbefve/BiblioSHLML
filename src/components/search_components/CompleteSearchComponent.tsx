@@ -47,7 +47,7 @@ function CompleteSearchComponent({
   const [searchParams] = useSearchParams();
 
   /**
-   * This function will handle a research by calling the API endpoint used to
+   * This function will handle research by calling the API endpoint used to
    * the research.
    */
   const handleSearch = useCallback(

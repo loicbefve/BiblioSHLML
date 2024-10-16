@@ -8,7 +8,7 @@ import {
   useState,
 } from 'react';
 import { PageState } from '../../utils/Types';
-import default_fiche from '../../../public/default_fiche.png';
+import default_fiche from '/default_fiche.png';
 
 const ImageViewerWrapper = styled.div`
   flex: 1;
@@ -61,12 +61,11 @@ function ImageViewer({
 
     if (!res.ok) {
       setImg(default_fiche);
-      // TODO : Handle error
+    } else {
+      const imageBlob = await res.blob();
+      const imageObjectURL = URL.createObjectURL(imageBlob);
+      setImg(imageObjectURL);
     }
-
-    const imageBlob = await res.blob();
-    const imageObjectURL = URL.createObjectURL(imageBlob);
-    setImg(imageObjectURL);
 
     // setPageState(PageState.Loaded);
   }, [currentSource]);
@@ -78,6 +77,10 @@ function ImageViewer({
       setImg(default_fiche);
     }
   }, [currentSource]);
+
+  useEffect(() => {
+    console.log('Image Source:', img); // Log the img to check its value
+  }, [img]);
 
   return (
     <ImageViewerWrapper>
