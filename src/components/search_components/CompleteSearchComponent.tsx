@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState } from '../../utils/Types';
+import PageState from '../../utils/Types';
 import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';

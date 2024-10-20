@@ -7,7 +7,7 @@ import {
   useEffect,
   useState,
 } from 'react';
-import { PageState } from '../../utils/Types';
+import PageState from '../../utils/Types';
 import default_fiche from '/default_fiche.png';
 
 const ImageViewerWrapper = styled.div`

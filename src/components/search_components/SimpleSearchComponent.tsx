@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState } from '../../utils/Types';
+import PageState from '../../utils/Types';
 import SimpleSearchBar from '../searchbars/SimpleSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
