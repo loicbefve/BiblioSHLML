@@ -18,6 +18,7 @@ import type {
   Factum,
   FondsDocumentaire,
   FondsJohannique,
+  Imprime,
   IndexPaysLorrain,
   Manuscrit,
 } from '../models/index';
@@ -28,6 +29,8 @@ import {
     FondsDocumentaireToJSON,
     FondsJohanniqueFromJSON,
     FondsJohanniqueToJSON,
+    ImprimeFromJSON,
+    ImprimeToJSON,
     IndexPaysLorrainFromJSON,
     IndexPaysLorrainToJSON,
     ManuscritFromJSON,
@@ -35,18 +38,18 @@ import {
 } from '../models/index';
 
 /**
- * DefaultApi - interface
+ * SearchApi - interface
  * 
  * @export
- * @interface DefaultApiInterface
+ * @interface SearchApiInterface
  */
-export interface DefaultApiInterface {
+export interface SearchApiInterface {
     /**
      * 
      * @summary Search for factums
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApiInterface
+     * @memberof SearchApiInterface
      */
     searchFactumsGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Factum>>>;
 
@@ -60,7 +63,7 @@ export interface DefaultApiInterface {
      * @summary Search for fonds documentaire
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApiInterface
+     * @memberof SearchApiInterface
      */
     searchFondsDocumentaireGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsDocumentaire>>>;
 
@@ -74,7 +77,7 @@ export interface DefaultApiInterface {
      * @summary Search for fonds johannique
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApiInterface
+     * @memberof SearchApiInterface
      */
     searchFondsJohanniqueGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsJohannique>>>;
 
@@ -85,10 +88,24 @@ export interface DefaultApiInterface {
 
     /**
      * 
+     * @summary Search for imprimes
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof SearchApiInterface
+     */
+    searchImprimesGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Imprime>>>;
+
+    /**
+     * Search for imprimes
+     */
+    searchImprimesGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Imprime>>;
+
+    /**
+     * 
      * @summary Search for index pays lorrain
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApiInterface
+     * @memberof SearchApiInterface
      */
     searchIndexPaysLorrainGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<IndexPaysLorrain>>>;
 
@@ -102,7 +119,7 @@ export interface DefaultApiInterface {
      * @summary Search for manuscrits
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof DefaultApiInterface
+     * @memberof SearchApiInterface
      */
     searchManuscritsGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Manuscrit>>>;
 
@@ -116,7 +133,7 @@ export interface DefaultApiInterface {
 /**
  * 
  */
-export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
+export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
 
     /**
      * Search for factums
@@ -193,6 +210,32 @@ export class DefaultApi extends runtime.BaseAPI implements DefaultApiInterface {
      */
     async searchFondsJohanniqueGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsJohannique>> {
         const response = await this.searchFondsJohanniqueGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Search for imprimes
+     */
+    async searchImprimesGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Imprime>>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/searchImprimes`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue.map(ImprimeFromJSON));
+    }
+
+    /**
+     * Search for imprimes
+     */
+    async searchImprimesGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Imprime>> {
+        const response = await this.searchImprimesGetRaw(initOverrides);
         return await response.value();
     }
 

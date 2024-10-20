@@ -1,5 +1,4 @@
-.openapi-generator-ignore
-apis/DefaultApi.ts
+apis/SearchApi.ts
 apis/index.ts
 index.ts
 models/Factum.ts

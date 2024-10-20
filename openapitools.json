@@ -6,10 +6,11 @@
     "generators": {
       "biblio-api": {
         "generatorName": "typescript-fetch",
-        "inputSpec": "./docs/biblio-api.json",
+        "inputSpec": "./docs/biblio-api.yaml",
         "output": "generated-client/biblio-api",
         "additionalProperties": {
-          "global-api-class": "BiblioApi"
+          "globalApiClass": "BiblioApi",
+          "withInterfaces": true
         }
       }
     }
