@@ -43,6 +43,12 @@ export interface SearchFactumsGetRequest {
     keywords?: string;
 }
 
+export interface SearchFondsDocumentaireGetRequest {
+    author?: string;
+    title?: string;
+    keywords?: string;
+}
+
 export interface SearchFondsJohanniqueGetRequest {
     author?: string;
     title?: string;
@@ -109,8 +115,20 @@ export class SearchApi extends runtime.BaseAPI {
     /**
      * Search for fonds documentaire
      */
-    async searchFondsDocumentaireGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsDocumentaire>>> {
+    async searchFondsDocumentaireGetRaw(requestParameters: SearchFondsDocumentaireGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsDocumentaire>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['author'] != null) {
+            queryParameters['author'] = requestParameters['author'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        if (requestParameters['keywords'] != null) {
+            queryParameters['keywords'] = requestParameters['keywords'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -127,8 +145,8 @@ export class SearchApi extends runtime.BaseAPI {
     /**
      * Search for fonds documentaire
      */
-    async searchFondsDocumentaireGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsDocumentaire>> {
-        const response = await this.searchFondsDocumentaireGetRaw(initOverrides);
+    async searchFondsDocumentaireGet(requestParameters: SearchFondsDocumentaireGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsDocumentaire>> {
+        const response = await this.searchFondsDocumentaireGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
