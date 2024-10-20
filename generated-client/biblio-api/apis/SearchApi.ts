@@ -37,109 +37,54 @@ import {
     ManuscritToJSON,
 } from '../models/index';
 
-/**
- * SearchApi - interface
- * 
- * @export
- * @interface SearchApiInterface
- */
-export interface SearchApiInterface {
-    /**
-     * 
-     * @summary Search for factums
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchApiInterface
-     */
-    searchFactumsGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Factum>>>;
+export interface SearchFactumsGetRequest {
+    author?: string;
+    title?: string;
+    keywords?: string;
+}
 
-    /**
-     * Search for factums
-     */
-    searchFactumsGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Factum>>;
+export interface SearchFondsJohanniqueGetRequest {
+    author?: string;
+    title?: string;
+    keywords?: string;
+}
 
-    /**
-     * 
-     * @summary Search for fonds documentaire
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchApiInterface
-     */
-    searchFondsDocumentaireGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsDocumentaire>>>;
+export interface SearchImprimesGetRequest {
+    author?: string;
+    title?: string;
+    keywords?: string;
+}
 
-    /**
-     * Search for fonds documentaire
-     */
-    searchFondsDocumentaireGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsDocumentaire>>;
+export interface SearchIndexPaysLorrainGetRequest {
+    keywords?: string;
+}
 
-    /**
-     * 
-     * @summary Search for fonds johannique
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchApiInterface
-     */
-    searchFondsJohanniqueGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsJohannique>>>;
-
-    /**
-     * Search for fonds johannique
-     */
-    searchFondsJohanniqueGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsJohannique>>;
-
-    /**
-     * 
-     * @summary Search for imprimes
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchApiInterface
-     */
-    searchImprimesGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Imprime>>>;
-
-    /**
-     * Search for imprimes
-     */
-    searchImprimesGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Imprime>>;
-
-    /**
-     * 
-     * @summary Search for index pays lorrain
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchApiInterface
-     */
-    searchIndexPaysLorrainGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<IndexPaysLorrain>>>;
-
-    /**
-     * Search for index pays lorrain
-     */
-    searchIndexPaysLorrainGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<IndexPaysLorrain>>;
-
-    /**
-     * 
-     * @summary Search for manuscrits
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof SearchApiInterface
-     */
-    searchManuscritsGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Manuscrit>>>;
-
-    /**
-     * Search for manuscrits
-     */
-    searchManuscritsGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Manuscrit>>;
-
+export interface SearchManuscritsGetRequest {
+    keywords?: string;
 }
 
 /**
  * 
  */
-export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
+export class SearchApi extends runtime.BaseAPI {
 
     /**
      * Search for factums
      */
-    async searchFactumsGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Factum>>> {
+    async searchFactumsGetRaw(requestParameters: SearchFactumsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Factum>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['author'] != null) {
+            queryParameters['author'] = requestParameters['author'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        if (requestParameters['keywords'] != null) {
+            queryParameters['keywords'] = requestParameters['keywords'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -156,8 +101,8 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
     /**
      * Search for factums
      */
-    async searchFactumsGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Factum>> {
-        const response = await this.searchFactumsGetRaw(initOverrides);
+    async searchFactumsGet(requestParameters: SearchFactumsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Factum>> {
+        const response = await this.searchFactumsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -190,8 +135,20 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
     /**
      * Search for fonds johannique
      */
-    async searchFondsJohanniqueGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsJohannique>>> {
+    async searchFondsJohanniqueGetRaw(requestParameters: SearchFondsJohanniqueGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<FondsJohannique>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['author'] != null) {
+            queryParameters['author'] = requestParameters['author'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        if (requestParameters['keywords'] != null) {
+            queryParameters['keywords'] = requestParameters['keywords'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -208,16 +165,28 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
     /**
      * Search for fonds johannique
      */
-    async searchFondsJohanniqueGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsJohannique>> {
-        const response = await this.searchFondsJohanniqueGetRaw(initOverrides);
+    async searchFondsJohanniqueGet(requestParameters: SearchFondsJohanniqueGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<FondsJohannique>> {
+        const response = await this.searchFondsJohanniqueGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Search for imprimes
      */
-    async searchImprimesGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Imprime>>> {
+    async searchImprimesGetRaw(requestParameters: SearchImprimesGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Imprime>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['author'] != null) {
+            queryParameters['author'] = requestParameters['author'];
+        }
+
+        if (requestParameters['title'] != null) {
+            queryParameters['title'] = requestParameters['title'];
+        }
+
+        if (requestParameters['keywords'] != null) {
+            queryParameters['keywords'] = requestParameters['keywords'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -234,16 +203,20 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
     /**
      * Search for imprimes
      */
-    async searchImprimesGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Imprime>> {
-        const response = await this.searchImprimesGetRaw(initOverrides);
+    async searchImprimesGet(requestParameters: SearchImprimesGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Imprime>> {
+        const response = await this.searchImprimesGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Search for index pays lorrain
      */
-    async searchIndexPaysLorrainGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<IndexPaysLorrain>>> {
+    async searchIndexPaysLorrainGetRaw(requestParameters: SearchIndexPaysLorrainGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<IndexPaysLorrain>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['keywords'] != null) {
+            queryParameters['keywords'] = requestParameters['keywords'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -260,16 +233,20 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
     /**
      * Search for index pays lorrain
      */
-    async searchIndexPaysLorrainGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<IndexPaysLorrain>> {
-        const response = await this.searchIndexPaysLorrainGetRaw(initOverrides);
+    async searchIndexPaysLorrainGet(requestParameters: SearchIndexPaysLorrainGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<IndexPaysLorrain>> {
+        const response = await this.searchIndexPaysLorrainGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
     /**
      * Search for manuscrits
      */
-    async searchManuscritsGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Manuscrit>>> {
+    async searchManuscritsGetRaw(requestParameters: SearchManuscritsGetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Array<Manuscrit>>> {
         const queryParameters: any = {};
+
+        if (requestParameters['keywords'] != null) {
+            queryParameters['keywords'] = requestParameters['keywords'];
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
@@ -286,8 +263,8 @@ export class SearchApi extends runtime.BaseAPI implements SearchApiInterface {
     /**
      * Search for manuscrits
      */
-    async searchManuscritsGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Manuscrit>> {
-        const response = await this.searchManuscritsGetRaw(initOverrides);
+    async searchManuscritsGet(requestParameters: SearchManuscritsGetRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Array<Manuscrit>> {
+        const response = await this.searchManuscritsGetRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
