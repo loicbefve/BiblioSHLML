@@ -105,7 +105,7 @@ function ImageViewer({
             Image suivante{' '}
           </Button>
           <InputGroup.Text id="title-text">
-            Resultat {currentImageIndex + 1} de {numberOfImages}
+            Résultat {currentImageIndex + 1} sur {numberOfImages}
           </InputGroup.Text>
         </ButtonGroup>
       </ResultNavigationWrapper>

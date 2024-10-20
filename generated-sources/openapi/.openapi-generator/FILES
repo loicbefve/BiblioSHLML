@@ -1,0 +1,16 @@
+.openapi-generator-ignore
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/Factum.ts
+models/FactumMetadatas.ts
+models/FondsDocumentaire.ts
+models/FondsDocumentaireMetadatas.ts
+models/FondsJohannique.ts
+models/Imprime.ts
+models/ImprimeMetadatas.ts
+models/IndexPaysLorrain.ts
+models/Manuscrit.ts
+models/ManuscritMetadatas.ts
+models/index.ts
+runtime.ts
