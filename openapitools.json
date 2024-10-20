@@ -7,7 +7,10 @@
       "biblio-api": {
         "generatorName": "typescript-fetch",
         "inputSpec": "./docs/biblio-api.yaml",
-        "output": "src/api/generated-client"
+        "output": "src/api/generated-client",
+        "additionalProperties": {
+          "modelPropertyNaming": "snake_case"
+        }
       }
     }
   }

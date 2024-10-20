@@ -24,7 +24,7 @@ export interface FondsDocumentaireMetadatas {
      * @type {string}
      * @memberof FondsDocumentaireMetadatas
      */
-    nCarton?: string;
+    n_carton?: string;
     /**
      * 
      * @type {string}
@@ -36,7 +36,7 @@ export interface FondsDocumentaireMetadatas {
      * @type {string}
      * @memberof FondsDocumentaireMetadatas
      */
-    typeDeDocument?: string;
+    type_de_document?: string;
     /**
      * 
      * @type {string}
@@ -48,7 +48,7 @@ export interface FondsDocumentaireMetadatas {
      * @type {string}
      * @memberof FondsDocumentaireMetadatas
      */
-    auteurBis?: string;
+    auteur_bis?: string;
     /**
      * 
      * @type {string}
@@ -96,7 +96,7 @@ export interface FondsDocumentaireMetadatas {
      * @type {string}
      * @memberof FondsDocumentaireMetadatas
      */
-    ancienProprietaire?: string;
+    ancien_proprietaire?: string;
     /**
      * 
      * @type {string}
@@ -114,7 +114,7 @@ export interface FondsDocumentaireMetadatas {
      * @type {string}
      * @memberof FondsDocumentaireMetadatas
      */
-    emplacementInitialDansLaBibliotheque?: string;
+    emplacement_initial_dans_la_bibliotheque?: string;
 }
 
 /**
@@ -134,11 +134,11 @@ export function FondsDocumentaireMetadatasFromJSONTyped(json: any, ignoreDiscrim
     }
     return {
         
-        'nCarton': json['n_carton'] == null ? undefined : json['n_carton'],
+        'n_carton': json['n_carton'] == null ? undefined : json['n_carton'],
         'fonds': json['fonds'] == null ? undefined : json['fonds'],
-        'typeDeDocument': json['type_de_document'] == null ? undefined : json['type_de_document'],
+        'type_de_document': json['type_de_document'] == null ? undefined : json['type_de_document'],
         'auteur': json['auteur'] == null ? undefined : json['auteur'],
-        'auteurBis': json['auteur_bis'] == null ? undefined : json['auteur_bis'],
+        'auteur_bis': json['auteur_bis'] == null ? undefined : json['auteur_bis'],
         'titre': json['titre'] == null ? undefined : json['titre'],
         'couverture': json['couverture'] == null ? undefined : json['couverture'],
         'langue': json['langue'] == null ? undefined : json['langue'],
@@ -146,10 +146,10 @@ export function FondsDocumentaireMetadatasFromJSONTyped(json: any, ignoreDiscrim
         'datation': json['datation'] == null ? undefined : json['datation'],
         'contenu': json['contenu'] == null ? undefined : json['contenu'],
         'etat': json['etat'] == null ? undefined : json['etat'],
-        'ancienProprietaire': json['ancien_proprietaire'] == null ? undefined : json['ancien_proprietaire'],
+        'ancien_proprietaire': json['ancien_proprietaire'] == null ? undefined : json['ancien_proprietaire'],
         'notes': json['notes'] == null ? undefined : json['notes'],
         'don': json['don'] == null ? undefined : json['don'],
-        'emplacementInitialDansLaBibliotheque': json['emplacement_initial_dans_la_bibliotheque'] == null ? undefined : json['emplacement_initial_dans_la_bibliotheque'],
+        'emplacement_initial_dans_la_bibliotheque': json['emplacement_initial_dans_la_bibliotheque'] == null ? undefined : json['emplacement_initial_dans_la_bibliotheque'],
     };
 }
 
@@ -164,11 +164,11 @@ export function FondsDocumentaireMetadatasFromJSONTyped(json: any, ignoreDiscrim
 
     return {
         
-        'n_carton': value['nCarton'],
+        'n_carton': value['n_carton'],
         'fonds': value['fonds'],
-        'type_de_document': value['typeDeDocument'],
+        'type_de_document': value['type_de_document'],
         'auteur': value['auteur'],
-        'auteur_bis': value['auteurBis'],
+        'auteur_bis': value['auteur_bis'],
         'titre': value['titre'],
         'couverture': value['couverture'],
         'langue': value['langue'],
@@ -176,10 +176,10 @@ export function FondsDocumentaireMetadatasFromJSONTyped(json: any, ignoreDiscrim
         'datation': value['datation'],
         'contenu': value['contenu'],
         'etat': value['etat'],
-        'ancien_proprietaire': value['ancienProprietaire'],
+        'ancien_proprietaire': value['ancien_proprietaire'],
         'notes': value['notes'],
         'don': value['don'],
-        'emplacement_initial_dans_la_bibliotheque': value['emplacementInitialDansLaBibliotheque'],
+        'emplacement_initial_dans_la_bibliotheque': value['emplacement_initial_dans_la_bibliotheque'],
     };
 }
 

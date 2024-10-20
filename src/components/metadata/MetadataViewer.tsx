@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
 import { Dispatch, SetStateAction, useCallback } from 'react';
 import MetadataItem from './MetadataItem';
-import { ResearchResult } from '../../utils/Types';
+import { ResearchResult } from '../../api/apiService';
 
 const MetadataViewerWrapper = styled.div`
   flex: 1;
