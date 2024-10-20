@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import CompleteSearchComponent from '../components/search_components/CompleteSearchComponent';
+import ApiService from '../api/apiService';
 
 /* STYLED COMPONENTS */
 const Title = styled.h3`
@@ -19,14 +20,13 @@ const searchInvitationMessage =
 
 /* COMPONENT */
 function Imprimes() {
-  // FIXME : Replace hardcoded URL with configuration call
   return (
     <ImprimesWrapper>
       <Title>Recherche dans la liste des Imprimés</Title>
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiEndpoint="searchImprimes"
+        apiEndpointFunction={ApiService.searchImprimes}
       />
     </ImprimesWrapper>
   );

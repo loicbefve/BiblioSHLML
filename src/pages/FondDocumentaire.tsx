@@ -1,7 +1,7 @@
 /* STYLED COMPONENTS */
 import styled from 'styled-components';
 import CompleteSearchComponent from '../components/search_components/CompleteSearchComponent';
-import { mockFondDocumentaire } from '../utils/MockData';
+import ApiService from '../api/apiService';
 
 const Title = styled.h3`
   text-align: center;
@@ -24,7 +24,7 @@ function FondDocumentaire() {
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiEndpoint="searchFondsDocumentaire"
+        apiEndpointFunction={ApiService.searchFondsDocumentaire}
       />
     </FondDocumentaireWrapper>
   );

@@ -7,7 +7,7 @@
       "biblio-api": {
         "generatorName": "typescript-fetch",
         "inputSpec": "./docs/biblio-api.yaml",
-        "output": "generated-client/biblio-api"
+        "output": "src/api/generated-client"
       }
     }
   }

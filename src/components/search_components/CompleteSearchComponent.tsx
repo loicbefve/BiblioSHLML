@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState, ResearchResult } from '../../utils/Types';
+import { FullSearchParams, PageState, ResearchResult } from '../../utils/Types';
 import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
@@ -27,7 +27,7 @@ const ResultDisplayContainer = styled.div`
 interface IProps {
   searchInvitationMessage: string;
 
-  apiEndpoint: string;
+  apiEndpointFunction: (params: FullSearchParams) => Promise<ResearchResult[]>;
 }
 
 /**
@@ -35,7 +35,7 @@ interface IProps {
  */
 function CompleteSearchComponent({
   searchInvitationMessage,
-  apiEndpoint,
+  apiEndpointFunction,
 }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
@@ -54,32 +54,22 @@ function CompleteSearchComponent({
     async (title: string, author: string, keywords: string) => {
       setPageState(PageState.Loading);
 
-      const apiURI = `${
-        import.meta.env.VITE_API_URL
-      }/${apiEndpoint}?title=${encodeURIComponent(
-        title
-      )}&author=${encodeURIComponent(author)}&keywords=${encodeURIComponent(
-        keywords
-      )}`;
-
       try {
-        const response = await fetch(apiURI);
+        const data = await apiEndpointFunction({
+          author,
+          title,
+          keywords,
+        });
 
-        if (!response.ok) {
-          const errorText = await response.text();
-          setError(errorText);
-          setPageState(PageState.Error);
-        }
-
-        const data: ResearchResult[] = await response.json();
         setSearchResult(data);
         setPageState(PageState.Loaded);
       } catch (e: any) {
+        console.error('Error while fetching data', e);
         setError(e.message);
         setPageState(PageState.Error);
       }
     },
-    [apiEndpoint]
+    [apiEndpointFunction]
   );
 
   const firstLoadFromURL = useCallback(async () => {
