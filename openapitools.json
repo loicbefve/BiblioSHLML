@@ -2,6 +2,16 @@
   "$schema": "./node_modules/@openapitools/openapi-generator-cli/config.schema.json",
   "spaces": 2,
   "generator-cli": {
-    "version": "7.9.0"
+    "version": "7.9.0",
+    "generators": {
+      "biblio-api": {
+        "generatorName": "typescript-fetch",
+        "inputSpec": "./docs/biblio-api.json",
+        "output": "generated-client/biblio-api",
+        "additionalProperties": {
+          "global-api-class": "BiblioApi"
+        }
+      }
+    }
   }
 }
