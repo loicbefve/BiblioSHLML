@@ -96,16 +96,30 @@ export interface FullSearchParams {
   keywords: string;
 }
 
+export interface SimpleResearchResult {
+  metadatas: {
+    commentaires: string;
+  };
+}
+
 // Export functions to interact with your API
 const ApiService = {
   searchImprimes: (params: FullSearchParams) =>
-    searchApi.searchImprimesGet(params),
+    searchApi.searchImprimesGet(params) as Promise<ResearchResult[]>,
   searchFactums: (params: FullSearchParams) =>
-    searchApi.searchFactumsGet(params),
+    searchApi.searchFactumsGet(params) as Promise<ResearchResult[]>,
   searchFondsJohannique: (params: FullSearchParams) =>
-    searchApi.searchFondsJohanniqueGet(params),
+    searchApi.searchFondsJohanniqueGet(params) as Promise<ResearchResult[]>,
   searchFondsDocumentaire: (params: FullSearchParams) =>
-    searchApi.searchFondsDocumentaireGet(params),
+    searchApi.searchFondsDocumentaireGet(params) as Promise<ResearchResult[]>,
+  searchIndexPaysLorrain: (keywords: string) =>
+    searchApi.searchIndexPaysLorrainGet({ keywords }) as Promise<
+      SimpleResearchResult[]
+    >,
+  searchManuscrits: (keywords: string) =>
+    searchApi.searchManuscritsGet({ keywords }) as Promise<
+      SimpleResearchResult[]
+    >,
 };
 
 export default ApiService;

@@ -2,8 +2,8 @@ import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button, ButtonGroup, InputGroup } from 'react-bootstrap';
 import styled from 'styled-components';
-import { SimpleResearchResult } from '../../utils/Types';
 import { parseSimpleHash } from '../../utils/UtilsFunctions';
+import { SimpleResearchResult } from '../../api/apiService';
 
 const ResultViewerWrapper = styled.div`
   flex: 1;

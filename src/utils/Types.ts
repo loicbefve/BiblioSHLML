@@ -2,12 +2,6 @@
 // to create our own types for less coupling. However the api should not change
 // in a while.
 
-export interface SimpleResearchResult {
-  metadatas: {
-    commentaires: string;
-  };
-}
-
 export enum PageState {
   NoData = 'nodata',
   Loading = 'loading',

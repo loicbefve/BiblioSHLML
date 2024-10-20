@@ -1,5 +1,4 @@
-import { ResearchResult, SimpleResearchResult } from './Types';
-
+import { ResearchResult, SimpleResearchResult } from '../api/apiService';
 /**
  * This function helps simulate an async request to the server
  */

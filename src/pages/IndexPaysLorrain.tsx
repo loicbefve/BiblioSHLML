@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SimpleSearchComponent from '../components/search_components/SimpleSearchComponent';
+import ApiService from '../api/apiService';
 
 /* STYLED COMPONENTS */
 const Title = styled.h3`
@@ -25,7 +26,7 @@ function IndexPaysLorrain() {
       <hr />
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiEndpoint="searchIndexPaysLorrain"
+        apiEndpointFunction={ApiService.searchIndexPaysLorrain}
       />
     </ImprimesWrapper>
   );

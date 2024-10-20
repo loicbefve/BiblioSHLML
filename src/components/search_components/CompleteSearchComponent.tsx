@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { FullSearchParams, PageState, ResearchResult } from '../../utils/Types';
+import { PageState } from '../../utils/Types';
 import CompleteResultsViewer from '../results_viewers/CompleteResultsViewer';
 import CompleteSearchBar from '../searchbars/CompleteSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
 import SearchError from './SearchError';
+import { FullSearchParams, ResearchResult } from '../../api/apiService';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -53,18 +54,15 @@ function CompleteSearchComponent({
   const handleSearch = useCallback(
     async (title: string, author: string, keywords: string) => {
       setPageState(PageState.Loading);
-
       try {
         const data = await apiEndpointFunction({
           author,
           title,
           keywords,
         });
-
         setSearchResult(data);
         setPageState(PageState.Loaded);
       } catch (e: any) {
-        console.error('Error while fetching data', e);
         setError(e.message);
         setPageState(PageState.Error);
       }

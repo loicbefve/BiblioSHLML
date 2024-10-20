@@ -1,6 +1,7 @@
 /* STYLED COMPONENTS */
 import styled from 'styled-components';
 import SimpleSearchComponent from '../components/search_components/SimpleSearchComponent';
+import ApiService from '../api/apiService';
 
 const Title = styled.h3`
   text-align: center;
@@ -23,7 +24,7 @@ function Manuscrits() {
       <hr />
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
-        apiEndpoint="searchManuscrits"
+        apiEndpointFunction={ApiService.searchManuscrits}
       />
     </ManuscritsWrapper>
   );

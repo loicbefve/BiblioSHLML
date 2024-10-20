@@ -1,12 +1,13 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { PageState, SimpleResearchResult } from '../../utils/Types';
+import { PageState } from '../../utils/Types';
 import SimpleSearchBar from '../searchbars/SimpleSearchBar';
 import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
 import SimpleResultsViewer from '../results_viewers/SimpleResultsViewer';
 import SearchError from './SearchError';
+import { SimpleResearchResult } from '../../api/apiService';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -26,9 +27,7 @@ const ResultDisplayContainer = styled.div`
 
 interface IProps {
   searchInvitationMessage: string;
-
-  // TODO: Later make it the real API URI
-  apiEndpoint: string;
+  apiEndpointFunction: (keywords: string) => Promise<SimpleResearchResult[]>;
 }
 
 /**
@@ -36,7 +35,7 @@ interface IProps {
  */
 function SimpleSearchComponent({
   searchInvitationMessage,
-  apiEndpoint,
+  apiEndpointFunction,
 }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<SimpleResearchResult[]>([]);
@@ -46,38 +45,22 @@ function SimpleSearchComponent({
   const [searchParams] = useSearchParams();
 
   /**
-   * This function will handle a research by calling the API endpoint used to
+   * This function will handle research by calling the API endpoint used to
    * the research.
    */
   const handleSearch = useCallback(
     async (keywords: string) => {
       setPageState(PageState.Loading);
-
-      const apiURI = `${
-        import.meta.env.VITE_API_URL
-      }/${apiEndpoint}?keywords=${encodeURIComponent(keywords)}`;
-
       try {
-        const response = await fetch(apiURI);
-
-        if (!response.ok) {
-          const errorText = `Http error ${response.status} : ${response.statusText}`;
-          setError(errorText);
-          setPageState(PageState.Error);
-          return response;
-        }
-
-        const data: SimpleResearchResult[] = await response.json();
+        const data = await apiEndpointFunction(keywords);
         setSearchResult(data);
         setPageState(PageState.Loaded);
-        return response;
       } catch (e: any) {
         setError(e.message);
         setPageState(PageState.Error);
-        return new Response(null);
       }
     },
-    [apiEndpoint]
+    [apiEndpointFunction]
   );
 
   const firstLoadFromURL = useCallback(async () => {
