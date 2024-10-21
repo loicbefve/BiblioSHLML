@@ -47,7 +47,7 @@ function SimpleResultsViewer({ results }: IProps) {
    * image index as contained inside the hash part of the URL
    */
   useEffect(() => {
-    if (hash) {
+    if (hash && results.length > 0) {
       const { parsedDataIndex } = parseSimpleHash(hash, results);
       setCurrentDataIndex(parsedDataIndex - 1);
     }
@@ -63,7 +63,10 @@ function SimpleResultsViewer({ results }: IProps) {
 
   if (results.length < 1) {
     return (
-      <div>No results found for your request. Try different parameters</div>
+      <div>
+        Pas de résultats pour cette recherche. Essayez avec une recherche
+        différente
+      </div>
     );
   }
 
