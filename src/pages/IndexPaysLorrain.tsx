@@ -27,6 +27,7 @@ function IndexPaysLorrain() {
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiEndpointFunction={ApiService.searchIndexPaysLorrain}
+        statsFunction={ApiService.statsIndexPaysLorrain}
       />
     </ImprimesWrapper>
   );

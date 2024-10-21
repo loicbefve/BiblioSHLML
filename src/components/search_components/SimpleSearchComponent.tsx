@@ -8,6 +8,7 @@ import SearchLoading from './SearchLoading';
 import SimpleResultsViewer from '../results_viewers/SimpleResultsViewer';
 import SearchError from './SearchError';
 import { SimpleResearchResult } from '../../api/apiService';
+import { Stats } from '../../api/generated-client';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -28,6 +29,7 @@ const ResultDisplayContainer = styled.div`
 interface IProps {
   searchInvitationMessage: string;
   apiEndpointFunction: (keywords: string) => Promise<SimpleResearchResult[]>;
+  statsFunction: () => Promise<Stats>;
 }
 
 /**
@@ -36,6 +38,7 @@ interface IProps {
 function SimpleSearchComponent({
   searchInvitationMessage,
   apiEndpointFunction,
+  statsFunction,
 }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<SimpleResearchResult[]>([]);
@@ -109,6 +112,7 @@ function SimpleSearchComponent({
         onSearch={handleSearch}
         keywords={keywordsState}
         setKeywords={setKeywordsState}
+        statsFunction={statsFunction}
       />
       <ResultDisplayContainer>{renderResults()}</ResultDisplayContainer>
     </SearchComponentWrapper>

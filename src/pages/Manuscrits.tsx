@@ -25,6 +25,7 @@ function Manuscrits() {
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiEndpointFunction={ApiService.searchManuscrits}
+        statsFunction={ApiService.statsManuscrits}
       />
     </ManuscritsWrapper>
   );

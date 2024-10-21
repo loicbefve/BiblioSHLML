@@ -1,7 +1,14 @@
 import { InputGroup, Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Form as RouterForm } from 'react-router-dom';
-import { Dispatch, SetStateAction } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+import { Stats } from '../../api/generated-client';
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -39,9 +46,26 @@ interface IProps {
   onSearch: (keywords: string) => void;
   keywords: string;
   setKeywords: Dispatch<SetStateAction<string>>;
+  statsFunction: () => Promise<Stats>;
 }
 
-function SimpleSearchBar({ onSearch, keywords, setKeywords }: IProps) {
+function SimpleSearchBar({
+  onSearch,
+  keywords,
+  setKeywords,
+  statsFunction,
+}: IProps) {
+  const [count, setCount] = useState<number>(0);
+
+  const getStats = useCallback(async () => {
+    const stats = await statsFunction();
+    setCount(stats.count ?? 0);
+  }, [statsFunction]);
+
+  useEffect(() => {
+    getStats();
+  }, []);
+
   return (
     <SearchBarWrapper>
       <IntroductionText>
@@ -73,7 +97,7 @@ function SimpleSearchBar({ onSearch, keywords, setKeywords }: IProps) {
             disabled
             id="basic-url"
             aria-describedby="number_of_fiches"
-            placeholder="xxxxxx fiches au jj/mm/aaaa"
+            placeholder={`${count} fiches`}
           />
         </StyledInputGroup>
       </InputsWrapper>
