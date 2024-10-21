@@ -8,6 +8,7 @@ import SearchInvitation from './SearchInvitation';
 import SearchLoading from './SearchLoading';
 import SearchError from './SearchError';
 import { FullSearchParams, ResearchResult } from '../../api/apiService';
+import { Stats } from '../../api/generated-client';
 
 const SearchComponentWrapper = styled.div`
   display: flex;
@@ -29,6 +30,8 @@ interface IProps {
   searchInvitationMessage: string;
 
   apiEndpointFunction: (params: FullSearchParams) => Promise<ResearchResult[]>;
+
+  statsFunction: () => Promise<Stats>;
 }
 
 /**
@@ -37,6 +40,7 @@ interface IProps {
 function CompleteSearchComponent({
   searchInvitationMessage,
   apiEndpointFunction,
+  statsFunction,
 }: IProps) {
   /* STATES */
   const [searchResult, setSearchResult] = useState<ResearchResult[]>([]);
@@ -121,6 +125,7 @@ function CompleteSearchComponent({
         setAuthorState={setAuthorState}
         keywordsState={keywordsState}
         setKeywordsState={setKeywordsState}
+        statsFunction={statsFunction}
       />
       <ResultDisplayContainer>{renderResults()}</ResultDisplayContainer>
     </SearchComponentWrapper>

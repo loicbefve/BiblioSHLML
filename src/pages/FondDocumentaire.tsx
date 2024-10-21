@@ -25,6 +25,7 @@ function FondDocumentaire() {
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiEndpointFunction={ApiService.searchFondsDocumentaire}
+        statsFunction={ApiService.statsFondsDocumentaire}
       />
     </FondDocumentaireWrapper>
   );

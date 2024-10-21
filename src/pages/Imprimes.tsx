@@ -27,6 +27,7 @@ function Imprimes() {
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiEndpointFunction={ApiService.searchImprimes}
+        statsFunction={ApiService.statsImprimes}
       />
     </ImprimesWrapper>
   );

@@ -25,6 +25,7 @@ function Factums() {
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiEndpointFunction={ApiService.searchFactums}
+        statsFunction={ApiService.statsFactums}
       />
     </FactumsWrapper>
   );

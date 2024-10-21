@@ -25,6 +25,7 @@ function FondJohannique() {
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
         apiEndpointFunction={ApiService.searchFondsJohannique}
+        statsFunction={ApiService.statsFondsJohannique}
       />
     </FondJohanniqueWrapper>
   );

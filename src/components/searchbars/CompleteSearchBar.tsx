@@ -1,7 +1,14 @@
 import { InputGroup, Form, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import { Form as RouterForm } from 'react-router-dom';
-import { Dispatch, SetStateAction } from 'react';
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
+import { Stats } from '../../api/generated-client';
 
 const InputsWrapper = styled.div`
   display: flex;
@@ -35,6 +42,7 @@ interface IProps {
   setAuthorState: Dispatch<SetStateAction<string>>;
   keywordsState: string;
   setKeywordsState: Dispatch<SetStateAction<string>>;
+  statsFunction: () => Promise<Stats>;
 }
 
 function CompleteSearchBar({
@@ -45,7 +53,26 @@ function CompleteSearchBar({
   setAuthorState,
   keywordsState,
   setKeywordsState,
+  statsFunction,
 }: IProps) {
+  const [count, setCount] = useState<number>(0);
+
+  const getStats = useCallback(async () => {
+    // setPageState(PageState.Loading);
+    try {
+      const data = await statsFunction();
+      setCount(data.count ?? 0);
+      // setPageState(PageState.Data);
+    } catch (error) {
+      // setError(error.message);
+      // setPageState(PageState.Error);
+    }
+  }, [statsFunction]);
+
+  useEffect(() => {
+    getStats();
+  }, []);
+
   return (
     <SearchBarWrapper>
       <IntroductionText>
@@ -101,7 +128,7 @@ function CompleteSearchBar({
             disabled
             id="basic-url"
             aria-describedby="number_of_fiches"
-            placeholder="xxxxxx fiches au jj/mm/aaaa"
+            placeholder={`${count} fiches`}
           />
         </StyledInputGroup>
       </InputsWrapper>
