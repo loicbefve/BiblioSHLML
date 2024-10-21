@@ -95,7 +95,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/searchFactums`,
+            path: `/search/factums`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -133,7 +133,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/searchFondsDocumentaire`,
+            path: `/search/fonds_documentaire`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -171,7 +171,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/searchFondsJohannique`,
+            path: `/search/fondsJohannique`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -209,7 +209,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/searchImprimes`,
+            path: `/search/imprimes`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -239,7 +239,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/searchIndexPaysLorrain`,
+            path: `/search/index_pays_lorrain`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -269,7 +269,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/searchManuscrits`,
+            path: `/search/manuscrits`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,

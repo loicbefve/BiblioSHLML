@@ -1,4 +1,5 @@
 apis/SearchApi.ts
+apis/StatsApi.ts
 apis/index.ts
 index.ts
 models/Factum.ts
@@ -11,5 +12,6 @@ models/ImprimeMetadatas.ts
 models/IndexPaysLorrain.ts
 models/Manuscrit.ts
 models/ManuscritMetadatas.ts
+models/Stats.ts
 models/index.ts
 runtime.ts

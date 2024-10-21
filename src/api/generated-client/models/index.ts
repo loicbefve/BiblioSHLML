@@ -10,3 +10,4 @@ export * from './ImprimeMetadatas';
 export * from './IndexPaysLorrain';
 export * from './Manuscrit';
 export * from './ManuscritMetadatas';
+export * from './Stats';
