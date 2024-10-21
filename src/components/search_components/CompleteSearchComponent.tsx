@@ -67,8 +67,12 @@ function CompleteSearchComponent({
         setSearchResult(data);
         setPageState(PageState.Loaded);
       } catch (e: any) {
-        setError(e.message);
-        setPageState(PageState.Error);
+        if (e.response && e.response.status === 404) {
+          setPageState(PageState.Loaded);
+        } else {
+          setError(e.message);
+          setPageState(PageState.Error);
+        }
       }
     },
     [apiEndpointFunction]
