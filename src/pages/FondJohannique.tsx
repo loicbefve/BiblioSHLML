@@ -20,7 +20,7 @@ const searchInvitationMessage =
 function FondJohannique() {
   return (
     <FondJohanniqueWrapper>
-      <Title>Recherche dans la liste des FondJohannique</Title>
+      <Title>Recherche dans la liste des Fonds Johannique</Title>
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}

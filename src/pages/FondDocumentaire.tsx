@@ -20,7 +20,7 @@ const searchInvitationMessage =
 function FondDocumentaire() {
   return (
     <FondDocumentaireWrapper>
-      <Title>Recherche dans la liste des FondDocumentaire</Title>
+      <Title>Recherche dans la liste des Fonds Documentaire</Title>
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}
