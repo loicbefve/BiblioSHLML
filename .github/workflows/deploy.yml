@@ -68,7 +68,7 @@ jobs:
       - name: Deploy to Server
         run: |
           # Use SCP to copy the built files to the server
-          scp -r $DIST_DIR/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}  # Adjust the destination path
+          scp -v -r $DIST_DIR/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}  # Adjust the destination path
 
           # Optionally restart the web server or perform other commands
           ssh ${{secrets.SSH_USER}}@${{env.SSH_HOST}} << 'EOF'
