@@ -49,7 +49,7 @@ jobs:
           export BACKEND_URL="${{ secrets.DEV_BACKEND_URL }}"   # Development backend URL
           fi
 
-          yarn build --define:VITE_API_URL=$BACKEND_URL  # Build the Vite application with the backend URL
+          VITE_API_URL=$BACKEND_URL yarn build
 
       - name: Set SSH_HOST for the env
         run: |
