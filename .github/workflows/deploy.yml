@@ -1,0 +1,81 @@
+name: 📦 Deploy Biblio frontend
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+          - 'prod'
+          - 'dev'
+      ref:
+        description: 'What branch, tag or SHA to deploy (default: master)'
+        required: false
+        default: 'master'
+
+jobs:
+  deploy:
+    name: 🚚 Deploy to environment
+    runs-on: ubuntu-latest
+
+    env:
+      DIST_DIR: 'dist'                             # Directory to deploy (output from Vite build)
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.ref }}
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '23'
+
+      - name: Install dependencies
+        run: |
+          yarn install
+
+      - name: Set environment variables and build
+        run: |
+          if [ "${{ inputs.environment }}" == "prod" ]; then
+          echo "Building for production..."
+          export BACKEND_URL="${{ secrets.PROD_BACKEND_URL }}"  # Production backend URL
+          else
+          echo "Building for development..."
+          export BACKEND_URL="${{ secrets.DEV_BACKEND_URL }}"   # Development backend URL
+          fi
+
+          yarn build --define:VITE_API_URL=$BACKEND_URL  # Build the Vite application with the backend URL
+
+      - name: Set SSH_HOST for the env
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "prod" ]; then
+            echo "SSH_HOST=${{ secrets.SSH_HOST_PROD }}" >> $GITHUB_ENV
+          else
+            echo "SSH_HOST=${{ secrets.SSH_HOST_DEV }}" >> $GITHUB_ENV
+          fi
+
+      - name: install SSH keys
+        run: |
+          install -m 600 -D /dev/null ~/.ssh/id_rsa
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+            ssh-keyscan -H ${{env.SSH_HOST}} >> ~/.ssh/known_hosts
+
+      - name: Deploy to Server
+        run: |
+          # Use SCP to copy the built files to the server
+          scp -i ssh_key -o StrictHostKeyChecking=no -r $DIST_DIR/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}  # Adjust the destination path
+
+          # Optionally restart the web server or perform other commands
+          ssh -i ssh_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'EOF'
+            # Command to restart Nginx (or any other web server you're using)
+            sudo systemctl restart nginx                 # Adjust this based on your web server
+          EOF
+
+      - name: cleanup
+        run: |
+          rm -rf ~/.ssh
