@@ -68,10 +68,10 @@ jobs:
       - name: Deploy to Server
         run: |
           # Use SCP to copy the built files to the server
-          scp -i ssh_key -o StrictHostKeyChecking=no -r $DIST_DIR/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}  # Adjust the destination path
+          scp -r $DIST_DIR/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}  # Adjust the destination path
 
           # Optionally restart the web server or perform other commands
-          ssh -i ssh_key -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP << 'EOF'
+          ssh ${{secrets.SSH_USER}}@${{env.SSH_HOST}} << 'EOF'
             # Command to restart Nginx (or any other web server you're using)
             sudo systemctl restart nginx                 # Adjust this based on your web server
           EOF
