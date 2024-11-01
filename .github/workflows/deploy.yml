@@ -43,13 +43,13 @@ jobs:
         run: |
           if [ "${{ inputs.environment }}" == "prod" ]; then
           echo "Building for production..."
-          export BACKEND_URL="${{ secrets.PROD_BACKEND_URL }}"  # Production backend URL
+          export VITE_API_URL="${{ secrets.PROD_BACKEND_URL }}"  # Production backend URL
           else
           echo "Building for development..."
-          export BACKEND_URL="${{ secrets.DEV_BACKEND_URL }}"   # Development backend URL
+          export VITE_API_URL="${{ secrets.DEV_BACKEND_URL }}"   # Development backend URL
           fi
 
-          VITE_API_URL=$BACKEND_URL yarn build
+          yarn build
 
       - name: Set SSH_HOST for the env
         run: |
