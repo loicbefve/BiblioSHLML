@@ -50,7 +50,9 @@ jobs:
           fi
 
       - name: Build
-        run: VITE_API_URL=${{env.BACKEND_URL}} yarn run build
+        env:
+          VITE_API_URL: ${{ env.BACKEND_URL }}
+        run: yarn run build
 
       - name: Set SSH_HOST for the env
         run: |
