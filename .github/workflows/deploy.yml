@@ -69,7 +69,7 @@ jobs:
       - name: Deploy to Server
         run: |
           # Use SCP to copy the built files to the server
-          scp -r $DIST_DIR/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}
+          scp -r ${{env.DIST_DIR}}/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}
 
           ssh ${{secrets.SSH_USER}}@${{env.SSH_HOST}} << 'EOF'
             # Command to restart Nginx
