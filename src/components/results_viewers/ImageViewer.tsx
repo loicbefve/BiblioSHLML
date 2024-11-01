@@ -54,6 +54,7 @@ function ImageViewer({
 
   const handleSearch = useCallback(async () => {
     setPageState(PageState.Loading);
+    setImg(default_fiche);
 
     const apiURI = `${import.meta.env.VITE_API_URL}/fiches/${currentSource}`;
 
