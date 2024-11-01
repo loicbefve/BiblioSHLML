@@ -39,17 +39,18 @@ jobs:
         run: |
           yarn install
 
-      - name: Set environment variables and build
+      - name: Set environment variables=
         run: |
           if [ "${{ inputs.environment }}" == "prod" ]; then
           echo "Building for production..."
-          export VITE_API_URL="${{ secrets.PROD_BACKEND_URL }}"  # Production backend URL
+          echo VITE_API_URL="${{ secrets.PROD_BACKEND_URL }}" >> $GITHUB_ENV  # Production backend URL
           else
           echo "Building for development..."
-          export VITE_API_URL="${{ secrets.DEV_BACKEND_URL }}"   # Development backend URL
+          echo VITE_API_URL="${{ secrets.DEV_BACKEND_URL }}" >> $GITHUB_ENV   # Development backend URL
           fi
 
-          yarn build
+      - name: Build
+        run: yarn run build
 
       - name: Set SSH_HOST for the env
         run: |
