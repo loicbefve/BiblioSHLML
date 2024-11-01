@@ -22,7 +22,7 @@ const searchInvitationMessage =
 function Imprimes() {
   return (
     <ImprimesWrapper>
-      <Title>Recherche dans la liste des Imprimés test</Title>
+      <Title>Recherche dans la liste des Imprimés</Title>
       <hr />
       <CompleteSearchComponent
         searchInvitationMessage={searchInvitationMessage}

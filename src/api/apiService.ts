@@ -6,8 +6,6 @@ const apiConfig = new Configuration({
 });
 
 // Instantiate the API client
-console.log(import.meta.env.VITE_API_URL);
-console.log(apiConfig);
 const searchApi = new SearchApi(apiConfig);
 const statsApi = new StatsApi(apiConfig);
 
