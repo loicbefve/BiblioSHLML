@@ -55,8 +55,10 @@ jobs:
         run: |
           if [ "${{ github.event.inputs.environment }}" == "prod" ]; then
             echo "SSH_HOST=${{ secrets.SSH_HOST_PROD }}" >> $GITHUB_ENV
+            echo "SSH_USER=${{ secrets.SSH_USER_PROD }}" >> $GITHUB_ENV
           else
             echo "SSH_HOST=${{ secrets.SSH_HOST_DEV }}" >> $GITHUB_ENV
+            echo "SSH_USER=${{ secrets.SSH_USER_DEV }}" >> $GITHUB_ENV
           fi
 
       - name: install SSH keys
@@ -68,9 +70,9 @@ jobs:
       - name: Deploy to Server
         run: |
           # Use SCP to copy the built files to the server
-          scp -r ${{env.DIST_DIR}}/* ${{secrets.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}
+          scp -r ${{env.DIST_DIR}}/* ${{env.SSH_USER}}@${{env.SSH_HOST}}:${{secrets.WORK_DIRECTORY}}
 
-          ssh ${{secrets.SSH_USER}}@${{env.SSH_HOST}} << 'EOF'
+          ssh ${{env.SSH_USER}}@${{env.SSH_HOST}} << 'EOF'
             # Command to restart Nginx
             sudo systemctl restart nginx
           EOF
