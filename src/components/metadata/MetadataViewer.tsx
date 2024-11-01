@@ -66,7 +66,7 @@ function MetadataViewer({
             active={currentDataIndex > 0}
             onClick={handlePreviousClick}
           >
-            Image précédente
+            Résultat précédent
           </Button>
           <Button
             variant="secondary"
@@ -74,7 +74,7 @@ function MetadataViewer({
             active={currentDataIndex + 1 < numberOfResults}
             onClick={handleNextClick}
           >
-            Image suivante{' '}
+            Résultat suivant{' '}
           </Button>
           <InputGroup.Text id="title-text">
             Resultat {currentDataIndex + 1} de {numberOfResults}
