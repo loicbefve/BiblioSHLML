@@ -171,7 +171,7 @@ export class SearchApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/search/fonds-johannique`,
+            path: `/search/fonds_johannique`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
