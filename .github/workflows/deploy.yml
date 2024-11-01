@@ -48,9 +48,8 @@ jobs:
           echo "Building for development..."
           echo BACKEND_URL="${{ secrets.DEV_BACKEND_URL }}" > .env   # Development backend URL
           fi
-
-      - name: Build
-        run: yarn run build
+          
+          yarn run build
 
       - name: Set SSH_HOST for the env
         run: |
