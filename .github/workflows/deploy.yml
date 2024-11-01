@@ -43,13 +43,13 @@ jobs:
         run: |
           if [ "${{ inputs.environment }}" == "prod" ]; then
           echo "Building for production..."
-          echo BACKEND_URL="${{ secrets.PROD_BACKEND_URL }}" > .env  # Production backend URL
+          echo BACKEND_URL="${{ secrets.PROD_BACKEND_URL }}" >> $GITHUB_ENV  # Production backend URL
           else
           echo "Building for development..."
-          echo BACKEND_URL="${{ secrets.DEV_BACKEND_URL }}" > .env   # Development backend URL
+          echo BACKEND_URL="${{ secrets.DEV_BACKEND_URL }}" >> $GITHUB_ENV   # Development backend URL
           fi
           
-          yarn run build
+          VITE_API_URL=${{env.BACKEND_URL}} yarn run build
 
       - name: Set SSH_HOST for the env
         run: |
