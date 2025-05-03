@@ -20,7 +20,7 @@ const searchInvitationMessage =
 function Manuscrits() {
   return (
     <ManuscritsWrapper>
-      <Title>Recherche dans la liste des Manuscrits</Title>
+      <Title>Recherche dans la liste des Manuscrits (déposé aux archives départementales)</Title>
       <hr />
       <SimpleSearchComponent
         searchInvitationMessage={searchInvitationMessage}

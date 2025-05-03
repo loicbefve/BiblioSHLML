@@ -56,7 +56,7 @@ function Home() {
             </li>
             <li>
               Manuscrits, plus de 400, certains sont des originaux,
-              d&apos;autres des copies. Attention, une partie de ce fonds est
+              d&apos;autres des copies. Attention, ce fonds est
               déposé aux archives départementales et n&apos;est pas consultable
               au Musée Lorrain. Le défilement s&apos;obtient par la recherche
               sans critère.
