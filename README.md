@@ -1,4 +1,5 @@
 # BiblioSHLML
+[![shlml](https://badge.uptimerobot.com/psp/9a5f29a26c126dc35726f17385a4f905.svg?style=logo&theme=light)](https://stats.uptimerobot.com/HjplgerHMC?utm_source=status_badge&utm_medium=referral)
 
 ## Description :
 Site de recherche dans les différents corpus documentaires de la bibliothèque de la Société d'Histoire de la Lorraine et du musée Lorrain.
