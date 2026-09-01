@@ -29,3 +29,25 @@ de configurer le fichier `.env.developement` avec les informations de connexion 
 pour vous aider à configurer votre fichier `.env.local`. Ne commitez jamais votre fichier `.env.local` dans le dépôt.
 
 Vous pouvez trouver le back-end de ce site ici : [BiblioAPI](https://github.com/loicbefve/BiblioAPI) 
+
+## Déploiement :
+
+Le déploiement se fait via le workflow GitHub Actions `📦 Deploy Biblio frontend`
+(`.github/workflows/deploy.yml`), déclenché manuellement.
+
+:warning: `VITE_API_URL` est **compilée dans le bundle au moment du build**. Modifier
+le secret GitHub ne suffit pas : il faut relancer le workflow de déploiement pour que
+la nouvelle valeur soit prise en compte.
+
+### API en same-origin
+
+Le site étant servi en HTTPS, une `VITE_API_URL` en `http://` est bloquée par le
+navigateur (*mixed content*) : les appels ne partent même pas. Pour éviter
+définitivement ce problème, l'API est exposée par nginx sur la **même origine** que le
+front, sous le préfixe `/api` :
+
+- secrets GitHub `PROD_BACKEND_URL` et `DEV_BACKEND_URL` : `/api`
+- configuration nginx du serveur : voir `docs/nginx.conf.example`
+
+Le navigateur reprend alors automatiquement le scheme et le domaine de la page, ce qui
+supprime à la fois le risque de *mixed content* et le besoin de CORS.
